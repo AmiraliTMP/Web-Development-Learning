@@ -1,0 +1,3606 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend → Backend Mastery Roadmap</title>
+    <style>
+      :root {
+        --bg: #07080c;
+        --panel: #0d1017;
+        --panel2: #11151e;
+        --text: #eef2f7;
+        --muted: #8e99aa;
+        --line: #202735;
+        --accent: #61dafb;
+        --accent2: #8b5cf6;
+        --green: #22c55e;
+        --orange: #f59e0b;
+        --pink: #ec4899;
+        --red: #ef4444;
+        --cyan: #06b6d4;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      }
+      * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+      html {
+        scroll-padding-top: 30px;
+      }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(
+            circle at 15% 5%,
+            rgba(97, 218, 251, 0.09),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 85% 15%,
+            rgba(139, 92, 246, 0.11),
+            transparent 30%
+          ),
+          var(--bg);
+        color: var(--text);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        line-height: 1.6;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button,
+      input {
+        font: inherit;
+      }
+      aside {
+        position: fixed;
+        inset: 0 auto 0 0;
+        width: 290px;
+        background: rgba(7, 8, 12, 0.94);
+        backdrop-filter: blur(18px);
+        border-right: 1px solid var(--line);
+        padding: 24px 16px;
+        z-index: 20;
+        overflow: auto;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 10px 22px;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 16px;
+      }
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+        color: #05060a;
+        box-shadow: 0 8px 30px rgba(97, 218, 251, 0.2);
+      }
+      .brand strong {
+        display: block;
+        font-size: 14px;
+      }
+      .brand span {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .search {
+        position: sticky;
+        top: 0;
+        background: var(--bg);
+        padding: 8px 0 14px;
+        z-index: 2;
+      }
+      .search input {
+        width: 100%;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        color: var(--text);
+        padding: 11px 12px;
+        border-radius: 10px;
+        outline: none;
+      }
+      .nav-title {
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #697386;
+        margin: 14px 10px 7px;
+      }
+      nav a {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 10px;
+        border-radius: 9px;
+        color: #aab3c2;
+        font-size: 13px;
+        margin: 2px 0;
+      }
+      nav a:hover {
+        background: #151a23;
+        color: #fff;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--c, #61dafb);
+        box-shadow: 0 0 10px var(--c, #61dafb);
+      }
+      main {
+        margin-left: 290px;
+        max-width: 1500px;
+        padding: 50px 55px 100px;
+      }
+      .hero {
+        min-height: 520px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .eyebrow {
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-size: clamp(46px, 6vw, 92px);
+        line-height: 0.95;
+        letter-spacing: -0.055em;
+        margin: 18px 0;
+        max-width: 1000px;
+      }
+      .gradient {
+        background: linear-gradient(
+          100deg,
+          #fff 15%,
+          #61dafb 45%,
+          #8b5cf6 75%,
+          #ec4899
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .hero p {
+        max-width: 760px;
+        color: #aeb7c6;
+        font-size: 18px;
+      }
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.25;
+        background-image:
+          linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: linear-gradient(to bottom, #000, transparent 80%);
+      }
+      .stats {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+      }
+      .stat {
+        background: rgba(13, 16, 23, 0.8);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 12px 16px;
+      }
+      .stat b {
+        font-size: 20px;
+      }
+      .stat span {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .section {
+        margin-top: 80px;
+        scroll-margin-top: 30px;
+      }
+      .section-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 18px;
+        margin-bottom: 24px;
+      }
+      .section-kicker {
+        color: var(--accent);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+      h2 {
+        font-size: 38px;
+        line-height: 1.05;
+        margin: 6px 0 0;
+        letter-spacing: -0.03em;
+      }
+      h3 {
+        margin: 0 0 8px;
+        font-size: 18px;
+      }
+      .logo-row {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .logo {
+        width: 54px;
+        height: 54px;
+        object-fit: contain;
+        filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.3));
+      }
+      .logo.react {
+        animation: spin 14s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px;
+      }
+      .card {
+        background: linear-gradient(
+          145deg,
+          rgba(17, 21, 30, 0.96),
+          rgba(11, 13, 19, 0.96)
+        );
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+      }
+      .card:hover {
+        border-color: #344052;
+        transform: translateY(-2px);
+        transition: 0.2s;
+      }
+      .card p,
+      .card li {
+        color: #9da7b7;
+        font-size: 13px;
+      }
+      .card.project h3 {
+        font-size: 15px;
+        margin-right: 28px;
+        line-height: 1.3;
+      }
+      .card.project p {
+        margin: 6px 0 0;
+        min-height: 1.2em;
+      }
+      .card ul {
+        padding-left: 18px;
+        margin: 10px 0 0;
+      }
+      .project {
+        position: relative;
+      }
+      .num {
+        position: absolute;
+        right: 16px;
+        top: 15px;
+        color: #475164;
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+      }
+      .tag {
+        font-size: 10px;
+        padding: 4px 7px;
+        border-radius: 6px;
+        background: #181e29;
+        color: #9da7b7;
+        border: 1px solid #252d3a;
+      }
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .skill {
+        padding: 7px 10px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        color: #aeb7c6;
+        background: #0c1017;
+        font-size: 12px;
+      }
+      .timeline {
+        border-left: 1px solid #2a3341;
+        margin-left: 15px;
+        padding-left: 25px;
+      }
+      .phase {
+        position: relative;
+        margin: 28px 0;
+      }
+      .phase:before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        left: -31px;
+        top: 7px;
+        background: var(--accent);
+        box-shadow: 0 0 18px var(--accent);
+      }
+      .callout {
+        padding: 18px 20px;
+        border: 1px solid #273141;
+        border-radius: 14px;
+        background: linear-gradient(
+          90deg,
+          rgba(97, 218, 251, 0.06),
+          rgba(139, 92, 246, 0.05)
+        );
+      }
+      .arch {
+        overflow: auto;
+        background: #05070b;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 22px;
+        color: #9fe8ff;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        white-space: pre;
+      }
+      .checklist label {
+        display: flex;
+        gap: 10px;
+        padding: 7px 0;
+        color: #aeb7c6;
+        font-size: 13px;
+      }
+      .checklist input {
+        accent-color: var(--accent);
+      }
+      footer {
+        margin-top: 100px;
+        padding-top: 30px;
+        border-top: 1px solid var(--line);
+        color: #697386;
+        font-size: 12px;
+      }
+      @media (max-width: 900px) {
+        aside {
+          position: relative;
+          width: 100%;
+          height: auto;
+          max-height: 55vh;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        main {
+          margin-left: 0;
+          padding: 28px 20px 70px;
+        }
+        .hero {
+          min-height: 420px;
+        }
+        h1 {
+          font-size: 48px;
+        }
+        .section {
+          margin-top: 55px;
+        }
+      }
+
+      /* Complete curriculum expansion */
+      #complete-curriculum {
+        scroll-margin-top: 32px;
+      }
+      #complete-curriculum .lead {
+        max-width: 950px;
+        opacity: 0.82;
+      }
+      .curriculum-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 18px;
+        margin-top: 26px;
+      }
+      .topic-card {
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        border-radius: 18px;
+        padding: 22px;
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.055),
+          rgba(255, 255, 255, 0.018)
+        );
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.16);
+        transition:
+          transform 0.22s ease,
+          border-color 0.22s ease,
+          box-shadow 0.22s ease;
+      }
+      .topic-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(120, 180, 255, 0.32);
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.24);
+      }
+      .topic-card h3 {
+        margin: 0 0 14px;
+        font-size: 1.05rem;
+      }
+      .topic-card ul {
+        margin: 0;
+        padding-left: 19px;
+      }
+      .topic-card li {
+        margin: 7px 0;
+        line-height: 1.45;
+        opacity: 0.86;
+      }
+      .mega-roadmap {
+        margin-top: 28px;
+        padding: 26px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: linear-gradient(
+          135deg,
+          rgba(80, 130, 255, 0.09),
+          rgba(170, 80, 255, 0.06)
+        );
+      }
+      .mega-roadmap li {
+        margin: 10px 0;
+        line-height: 1.55;
+      }
+      .nav-group {
+        margin-top: 18px;
+      }
+      .nav-label {
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        opacity: 0.55;
+        margin: 0 0 8px;
+      }
+      .nav-group a {
+        display: block;
+        padding: 6px 8px;
+        border-radius: 8px;
+      }
+      .nav-group a:hover {
+        background: rgba(255, 255, 255, 0.06);
+      }
+      @media (max-width: 800px) {
+        .curriculum-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <aside>
+      <div class="brand">
+        <div class="brand-mark">∞</div>
+        <div>
+          <strong>MASTER ROADMAP</strong><span>Frontend → Backend</span>
+        </div>
+      </div>
+      <div class="search">
+        <input id="search" type="search" placeholder="Search roadmap..." />
+      </div>
+      <div class="nav-title">Frontend</div>
+      <nav>
+        <div class="nav-group">
+          <div class="nav-label">Complete Curriculum</div>
+          <a href="#complete-curriculum">Master Curriculum</a>
+          <a href="#css-mastery">CSS Mastery</a>
+          <a href="#uiux">UI / UX</a>
+          <a href="#animation">Animation</a>
+          <a href="#js">JavaScript</a>
+          <a href="#typescript">TypeScript</a>
+          <a href="#react">React</a>
+          <a href="#vue">Vue.js</a>
+          <a href="#angular">Angular</a>
+          <a href="#next">Next.js</a>
+          <a href="#electron">Electron</a>
+          <a href="#node">Node.js</a>
+          <a href="#python">Python</a>
+          <a href="#django">Django</a>
+          <a href="#flask">Flask</a>
+          <a href="#golang">Go</a>
+          <a href="#express">Express.js</a>
+          <a href="#auth">Authentication</a>
+          <a href="#sql">PostgreSQL / SQL</a>
+          <a href="#security">Security</a>
+          <a href="#devops">DevOps</a>
+          <a href="#system-design">System Design</a>
+        </div>
+
+        <a href="#fe-foundations"
+          ><i class="dot" style="--c: #f97316"></i>HTML & CSS</a
+        >
+        <a href="#fe-ui"><i class="dot" style="--c: #38bdf8"></i>CSS & UI</a>
+        <a href="#fe-js"><i class="dot" style="--c: #f7df1e"></i>JavaScript</a>
+        <a href="#fe-js-apps"
+          ><i class="dot" style="--c: #f7df1e"></i>JavaScript Apps</a
+        >
+        <a href="#fe-games"><i class="dot" style="--c: #22c55e"></i>Games</a>
+        <a href="#bootstrap"
+          ><i class="dot" style="--c: #7952b3"></i>Bootstrap</a
+        >
+        <a href="#tailwind"
+          ><i class="dot" style="--c: #38bdf8"></i>Tailwind CSS</a
+        >
+        <a href="#fe-api"><i class="dot" style="--c: #06b6d4"></i>APIs</a>
+        <a href="#typescript-projects"
+          ><i class="dot" style="--c: #3178c6"></i>TypeScript</a
+        >
+        <a href="#react"><i class="dot" style="--c: #61dafb"></i>React</a>
+        <a href="#react-advanced"
+          ><i class="dot" style="--c: #61dafb"></i>Advanced React</a
+        >
+        <a href="#next"><i class="dot" style="--c: #fff"></i>Next.js</a>
+        <a href="#ai-fe"
+          ><i class="dot" style="--c: #a78bfa"></i>AI + Next.js</a
+        >
+        <a href="#three"><i class="dot" style="--c: #f472b6"></i>Three.js</a>
+        <a href="#vue"><i class="dot" style="--c: #42b883"></i>Vue.js</a>
+        <a href="#vue-advanced"
+          ><i class="dot" style="--c: #42b883"></i>Advanced Vue</a
+        >
+        <a href="#nuxt"><i class="dot" style="--c: #00dc82"></i>Nuxt</a>
+        <a href="#angular"><i class="dot" style="--c: #dd0031"></i>Angular</a>
+        <a href="#electron"><i class="dot" style="--c: #47848f"></i>Electron</a>
+      </nav>
+      <div class="nav-title">Backend</div>
+      <nav>
+        <a href="#be-fund"
+          ><i class="dot" style="--c: #68a063"></i>Fundamentals</a
+        >
+        <a href="#node"><i class="dot" style="--c: #68a063"></i>Node.js</a>
+        <a href="#express"><i class="dot" style="--c: #fff"></i>Express</a>
+        <a href="#mongo"><i class="dot" style="--c: #47a248"></i>MongoDB</a>
+        <a href="#auth"><i class="dot" style="--c: #ef4444"></i>Auth</a>
+        <a href="#security"><i class="dot" style="--c: #ef4444"></i>Security</a>
+        <a href="#rest"><i class="dot" style="--c: #06b6d4"></i>REST APIs</a>
+        <a href="#db"
+          ><i class="dot" style="--c: #336791"></i>Database Engineering</a
+        >
+        <a href="#redis"><i class="dot" style="--c: #dc382d"></i>Redis</a>
+        <a href="#queues"><i class="dot" style="--c: #f59e0b"></i>Queues</a>
+        <a href="#ws"><i class="dot" style="--c: #22c55e"></i>WebSockets</a>
+        <a href="#graphql"><i class="dot" style="--c: #e10098"></i>GraphQL</a>
+        <a href="#postgres"
+          ><i class="dot" style="--c: #336791"></i>PostgreSQL</a
+        >
+        <a href="#architecture"
+          ><i class="dot" style="--c: #8b5cf6"></i>Architecture</a
+        >
+        <a href="#testing"><i class="dot" style="--c: #22c55e"></i>Testing</a>
+        <a href="#observability"
+          ><i class="dot" style="--c: #f59e0b"></i>Observability</a
+        >
+        <a href="#docker"
+          ><i class="dot" style="--c: #2496ed"></i>Docker & DevOps</a
+        >
+        <a href="#cloud"><i class="dot" style="--c: #f59e0b"></i>Cloud</a>
+        <a href="#micro"
+          ><i class="dot" style="--c: #8b5cf6"></i>Microservices</a
+        >
+        <a href="#ai-be"><i class="dot" style="--c: #a78bfa"></i>AI Backend</a>
+        <a href="#python"><i class="dot" style="--c: #3776ab"></i>Python</a>
+        <a href="#django"><i class="dot" style="--c: #092e20"></i>Django</a>
+        <a href="#flask"><i class="dot" style="--c: #000000"></i>Flask</a>
+        <a href="#fastapi"><i class="dot" style="--c: #009688"></i>FastAPI</a>
+        <a href="#golang"><i class="dot" style="--c: #00add8"></i>Go</a>
+        <a href="#god"><i class="dot" style="--c: #ec4899"></i>God Mode</a>
+      </nav>
+    </aside>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="hero-grid"></div>
+        <div class="eyebrow">Personal Engineering Curriculum · 2026</div>
+        <h1>
+          <span class="gradient">Frontend → Backend</span><br />Mastery Roadmap
+        </h1>
+        <p>
+          A single visual curriculum combining the complete frontend and backend
+          project paths—from HTML and CSS fundamentals to React, Next.js,
+          Node.js, databases, distributed systems, AI, Three.js and
+          production-grade full-stack platforms.
+        </p>
+        <div class="stats">
+          <div class="stat"><b>300+</b><span>project milestones</span></div>
+          <div class="stat"><b>20+</b><span>technology domains</span></div>
+          <div class="stat"><b>2</b><span>engineering tracks</span></div>
+          <div class="stat"><b>∞</b><span>rebuild opportunities</span></div>
+        </div>
+      </section>
+
+      <div class="callout">
+        <strong>How to use this roadmap:</strong> Build → Rebuild → Improve →
+        Combine. Do not treat every project as a disposable tutorial. Rebuild
+        important projects with better architecture as you progress.
+      </div>
+
+      <section class="section" id="complete-curriculum">
+        <div class="section-kicker">MASTER CURRICULUM</div>
+        <h2>Complete Frontend → Backend Curriculum</h2>
+        <p class="lead">
+          A topic-by-topic checklist covering the areas that were missing: CSS
+          depth, UI/UX, animation, accessibility, browser APIs, TypeScript,
+          testing, architecture, backend engineering, databases, security,
+          DevOps, system design and production.
+        </p>
+
+        <div class="curriculum-grid">
+          <article class="topic-card" id="html-mastery">
+            <h3>01 · HTML & Web Platform</h3>
+            <ul>
+              <li>Document structure, doctype, head/body, semantic HTML</li>
+              <li>Headings, sections, article, nav, main, aside, footer</li>
+              <li>
+                Links, images, picture/srcset, figure/figcaption, audio/video
+              </li>
+              <li>
+                Forms, labels, inputs, validation, select, textarea, datalist
+              </li>
+              <li>Tables, captions, thead/tbody/tfoot, accessibility</li>
+              <li>Metadata, Open Graph, canonical, favicon, robots</li>
+              <li>HTML entities, iframe, embed, dialogs, details/summary</li>
+              <li>Web components basics, custom elements, templates, slots</li>
+              <li>Progressive enhancement and graceful degradation</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="css-mastery">
+            <h3>02 · CSS — Complete Mastery</h3>
+            <ul>
+              <li>Selectors, specificity, inheritance, cascade, layers</li>
+              <li>Box model, margin, padding, border, outline</li>
+              <li>
+                Display, overflow, positioning, stacking contexts, z-index
+              </li>
+              <li>Flexbox: axes, alignment, wrapping, sizing, ordering</li>
+              <li>Grid: tracks, areas, auto-fit/auto-fill, minmax</li>
+              <li>Responsive design, media/container queries, breakpoints</li>
+              <li>Units: px, %, rem, em, vw/vh, svh/lvh/dvh, ch</li>
+              <li>Typography, font loading, variable fonts, line-height</li>
+              <li>Colors, gradients, opacity, blend modes, filters</li>
+              <li>CSS variables, theming, design tokens</li>
+              <li>Transitions, transforms, keyframes, timing functions</li>
+              <li>Clip-path, masks, shapes, pseudo-elements</li>
+              <li>Logical properties and RTL/LTR layouts</li>
+              <li>Modern CSS nesting, :is(), :where(), :has(), @supports</li>
+              <li>Container queries and responsive components</li>
+              <li>CSS architecture: BEM, utility, component CSS, layers</li>
+              <li>Print CSS and media-specific styling</li>
+              <li>CSS debugging and DevTools</li>
+              <li>Performance: reducing layout/paint/composite work</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="uiux">
+            <h3>03 · UI / UX Design</h3>
+            <ul>
+              <li>
+                Design principles: hierarchy, balance, contrast, proximity,
+                repetition
+              </li>
+              <li>Information architecture and user flows</li>
+              <li>Wireframes, low/high fidelity prototypes</li>
+              <li>Layout grids, spacing systems, 8-point systems</li>
+              <li>Typography systems and type scale</li>
+              <li>Color theory, semantic colors, contrast</li>
+              <li>Design tokens and component variants</li>
+              <li>Buttons, inputs, cards, navigation, menus, dialogs</li>
+              <li>
+                States: default, hover, focus, active, disabled, loading, error,
+                success, empty
+              </li>
+              <li>Responsive/mobile-first UX</li>
+              <li>Forms and conversion-focused UX</li>
+              <li>Dashboards, tables, filters, search, pagination</li>
+              <li>Onboarding and authentication UX</li>
+              <li>Microcopy and content hierarchy</li>
+              <li>Usability testing and heuristic evaluation</li>
+              <li>Design systems and component libraries</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="animation">
+            <h3>04 · Animation & Motion</h3>
+            <ul>
+              <li>CSS transitions and keyframes</li>
+              <li>Transform, opacity and GPU-friendly animation</li>
+              <li>Timing functions, easing, spring-like motion</li>
+              <li>Staggered animations and orchestration</li>
+              <li>Hover/focus micro-interactions</li>
+              <li>Modal, drawer, accordion and page transitions</li>
+              <li>Scroll-triggered animation</li>
+              <li>Parallax and reveal effects</li>
+              <li>SVG animation and path drawing</li>
+              <li>FLIP animation concepts</li>
+              <li>Framer Motion / Motion for React</li>
+              <li>GSAP timelines, ScrollTrigger and advanced sequencing</li>
+              <li>Reduced-motion accessibility</li>
+              <li>Animation performance and compositor-friendly properties</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="js">
+            <h3>05 · JavaScript — Complete</h3>
+            <ul>
+              <li>Variables, types, operators, coercion</li>
+              <li>Functions, arrow functions, callbacks</li>
+              <li>Scope, closures, hoisting, execution context</li>
+              <li>Objects, prototypes, classes and OOP</li>
+              <li>Arrays, destructuring, spread/rest, Map, Set</li>
+              <li>Modules, import/export and package management</li>
+              <li>DOM selection/manipulation and events</li>
+              <li>Event bubbling, capturing and delegation</li>
+              <li>Fetch, promises, async/await</li>
+              <li>Event loop, microtasks, macrotasks</li>
+              <li>Error handling and custom errors</li>
+              <li>LocalStorage, SessionStorage, IndexedDB, cookies</li>
+              <li>Debounce, throttle and request cancellation</li>
+              <li>
+                Web APIs: Clipboard, Geolocation, Notifications, File, Drag &
+                Drop
+              </li>
+              <li>Web Workers and Service Workers</li>
+              <li>WebSockets and Server-Sent Events</li>
+              <li>Functional programming patterns and immutability</li>
+              <li>Regular expressions and date/time handling</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="typescript">
+            <h3>06 · TypeScript</h3>
+            <ul>
+              <li>Primitive types, arrays, tuples, enums</li>
+              <li>Interfaces, type aliases and unions</li>
+              <li>Generics and constraints</li>
+              <li>Narrowing, type guards and discriminated unions</li>
+              <li>Utility types: Partial, Pick, Omit, Record, ReturnType</li>
+              <li>Function and object typing</li>
+              <li>Type-safe API responses</li>
+              <li>tsconfig and strict mode</li>
+              <li>Declaration files and third-party package types</li>
+              <li>Advanced types and reusable domain models</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="react">
+            <h3>07 · React.js</h3>
+            <ul>
+              <li>JSX, components and props</li>
+              <li>State and controlled components</li>
+              <li>useState, useEffect, useRef, useMemo, useCallback</li>
+              <li>Custom hooks</li>
+              <li>Context API and composition</li>
+              <li>Forms and reusable form components</li>
+              <li>Lists, keys and conditional rendering</li>
+              <li>Error boundaries and loading states</li>
+              <li>React Router and protected routes</li>
+              <li>Redux Toolkit / Zustand / Context patterns</li>
+              <li>
+                TanStack Query: fetching, caching, mutations, invalidation
+              </li>
+              <li>Optimistic updates and pagination</li>
+              <li>Code splitting, lazy loading and Suspense</li>
+              <li>Memoization and render profiling</li>
+              <li>Reusable component architecture</li>
+              <li>Testing React components</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="next">
+            <h3>08 · Next.js</h3>
+            <ul>
+              <li>App Router and project architecture</li>
+              <li>Server vs Client Components</li>
+              <li>Layouts, pages, loading, error and not-found UI</li>
+              <li>Dynamic routes and route groups</li>
+              <li>Server Actions and route handlers</li>
+              <li>Data fetching, caching and revalidation</li>
+              <li>SSR, SSG, ISR and streaming</li>
+              <li>Metadata, sitemap and robots</li>
+              <li>Image/font optimization</li>
+              <li>Middleware/proxy patterns and authorization</li>
+              <li>Internationalization</li>
+              <li>Deployment and environment variables</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="css-frameworks">
+            <h3>09 · Bootstrap + Tailwind CSS</h3>
+            <ul>
+              <li>Bootstrap grid, utilities and responsive breakpoints</li>
+              <li>Navbar, modal, accordion, carousel, forms</li>
+              <li>Bootstrap customization and Sass</li>
+              <li>Tailwind utility-first workflow</li>
+              <li>Responsive/state variants and arbitrary values</li>
+              <li>Tailwind v4 concepts and CSS-first configuration</li>
+              <li>Reusable component patterns</li>
+              <li>Theme and dark-mode architecture</li>
+              <li>Design tokens, spacing and typography scales</li>
+              <li>Building a complete design system</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="three">
+            <h3>10 · Three.js + 3D Web</h3>
+            <ul>
+              <li>Scenes, cameras, renderers and render loops</li>
+              <li>Geometry, materials, textures and lights</li>
+              <li>Orbit controls and interaction</li>
+              <li>GLTF/GLB models and loaders</li>
+              <li>Particles and instancing</li>
+              <li>Shaders and GLSL fundamentals</li>
+              <li>Post-processing and effects</li>
+              <li>Physics integration</li>
+              <li>Scroll-driven 3D storytelling</li>
+              <li>Performance, draw calls and asset optimization</li>
+              <li>React Three Fiber and Drei</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="vue">
+            <h3>10b · Vue.js</h3>
+            <ul>
+              <li>Vue instance, template syntax and directives</li>
+              <li>Reactivity system and computed properties</li>
+              <li>Components, props, emits and slots</li>
+              <li>Composition API and script setup</li>
+              <li>Vue Router and navigation guards</li>
+              <li>Pinia state management</li>
+              <li>Forms, v-model and custom inputs</li>
+              <li>Lifecycle hooks and watchers</li>
+              <li>Composables and reusable logic</li>
+              <li>Teleport, Suspense and provide/inject</li>
+              <li>Testing Vue components</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="vue-advanced-curriculum">
+            <h3>10c · Advanced Vue & Nuxt</h3>
+            <ul>
+              <li>Nuxt 3 App directory and file-based routing</li>
+              <li>Server routes, middleware and Nitro</li>
+              <li>SSR, SSG, ISR and hybrid rendering</li>
+              <li>useFetch, useAsyncData and caching</li>
+              <li>Modules, plugins and runtime config</li>
+              <li>VueUse composables library</li>
+              <li>Vuetify / Naive UI / PrimeVue</li>
+              <li>Performance and code splitting</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="angular">
+            <h3>10d · Angular</h3>
+            <ul>
+              <li>Modules, components, templates and data binding</li>
+              <li>Directives, pipes and dependency injection</li>
+              <li>Services, RxJS and Observables</li>
+              <li>Routing, guards and lazy loading</li>
+              <li>Reactive forms and validation</li>
+              <li>HttpClient and interceptors</li>
+              <li>NgRx / Signals state management</li>
+              <li>Standalone components and modern Angular</li>
+              <li>Change detection and performance</li>
+              <li>Angular Material and CDK</li>
+              <li>Testing with Jasmine/Karma or Jest</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="electron">
+            <h3>10e · Electron & Desktop</h3>
+            <ul>
+              <li>Main process vs renderer process</li>
+              <li>BrowserWindow, menus and dialogs</li>
+              <li>IPC communication (invoke/handle)</li>
+              <li>Preload scripts and context isolation</li>
+              <li>Native Node APIs in desktop apps</li>
+              <li>Auto-updater and packaging (electron-builder)</li>
+              <li>Security: nodeIntegration, CSP, sandbox</li>
+              <li>File system, trays and notifications</li>
+              <li>Electron + React / Vue / Angular</li>
+              <li>Tauri comparison basics</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="python">
+            <h3>12b · Python</h3>
+            <ul>
+              <li>Syntax, types, collections and comprehensions</li>
+              <li>Functions, decorators and generators</li>
+              <li>OOP: classes, inheritance, dataclasses</li>
+              <li>Virtual environments and packaging (pip, poetry)</li>
+              <li>File I/O, pathlib and JSON/YAML</li>
+              <li>Asyncio and concurrent programming</li>
+              <li>Testing with pytest</li>
+              <li>Typing (type hints, mypy, pydantic)</li>
+              <li>Standard library: http, argparse, logging</li>
+              <li>Popular libs: requests, httpx, sqlalchemy</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="django">
+            <h3>12c · Django</h3>
+            <ul>
+              <li>Project/app structure and settings</li>
+              <li>Models, ORM, migrations and QuerySets</li>
+              <li>Views (FBV/CBV), URLs and templates</li>
+              <li>Forms, ModelForms and validation</li>
+              <li>Auth, permissions and middleware</li>
+              <li>Django REST Framework (serializers, viewsets)</li>
+              <li>Admin customization</li>
+              <li>Caching, signals and management commands</li>
+              <li>Testing Django apps</li>
+              <li>Deployment: Gunicorn, WhiteNoise, static files</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="flask">
+            <h3>12d · Flask & FastAPI</h3>
+            <ul>
+              <li>Flask app factory and blueprints</li>
+              <li>Routing, request/response and sessions</li>
+              <li>Jinja2 templates and WTForms</li>
+              <li>SQLAlchemy / Flask-SQLAlchemy</li>
+              <li>Flask extensions: Login, Migrate, CORS</li>
+              <li>FastAPI path operations and dependency injection</li>
+              <li>Pydantic models and automatic OpenAPI</li>
+              <li>Async endpoints and background tasks</li>
+              <li>Authentication (JWT/OAuth) patterns</li>
+              <li>Testing Flask/FastAPI apps</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="golang">
+            <h3>12e · Go (Golang)</h3>
+            <ul>
+              <li>Go syntax, types, structs and interfaces</li>
+              <li>Packages, modules and go.mod</li>
+              <li>Goroutines, channels and select</li>
+              <li>Error handling and idiomatic patterns</li>
+              <li>net/http servers and routers (chi, gin, echo)</li>
+              <li>Context, middleware and timeouts</li>
+              <li>Database/sql, GORM or sqlc</li>
+              <li>JSON, encoding and validation</li>
+              <li>Testing, benchmarks and table-driven tests</li>
+              <li>Concurrency patterns and worker pools</li>
+              <li>Building CLIs and microservices</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="backend-foundations">
+            <h3>11 · Backend Foundations</h3>
+            <ul>
+              <li>HTTP/HTTPS, TCP/IP and DNS basics</li>
+              <li>Request/response lifecycle</li>
+              <li>HTTP methods, status codes and headers</li>
+              <li>REST API design</li>
+              <li>JSON, serialization and validation</li>
+              <li>Environment variables and configuration</li>
+              <li>Logging, errors and centralized error handling</li>
+              <li>Layered architecture</li>
+              <li>Controllers, services, repositories and DTOs</li>
+              <li>Dependency management and package scripts</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="node">
+            <h3>12 · Node.js</h3>
+            <ul>
+              <li>Node runtime and event-driven architecture</li>
+              <li>Event loop and asynchronous I/O</li>
+              <li>CommonJS vs ESM</li>
+              <li>File system, paths and streams</li>
+              <li>Buffers and binary data</li>
+              <li>HTTP module and custom servers</li>
+              <li>Environment/config management</li>
+              <li>npm, package-lock and dependency strategy</li>
+              <li>Worker threads and clustering concepts</li>
+              <li>Performance profiling</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="express">
+            <h3>13 · Express.js</h3>
+            <ul>
+              <li>Routing and route parameters</li>
+              <li>Middleware architecture</li>
+              <li>Request validation and sanitization</li>
+              <li>Controllers and service layers</li>
+              <li>Authentication middleware</li>
+              <li>Centralized error middleware</li>
+              <li>File uploads</li>
+              <li>Pagination, filtering and sorting</li>
+              <li>Rate limiting and security headers</li>
+              <li>API versioning and documentation</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="api">
+            <h3>14 · API Engineering</h3>
+            <ul>
+              <li>REST resource modeling</li>
+              <li>CRUD and idempotency</li>
+              <li>Pagination: offset and cursor</li>
+              <li>Filtering, searching and sorting</li>
+              <li>API versioning</li>
+              <li>OpenAPI/Swagger documentation</li>
+              <li>Webhooks</li>
+              <li>File/media APIs</li>
+              <li>GraphQL: schema, queries, mutations, resolvers</li>
+              <li>gRPC concepts</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="auth">
+            <h3>15 · Authentication & Authorization</h3>
+            <ul>
+              <li>Password hashing: bcrypt/Argon2</li>
+              <li>Sessions and cookies</li>
+              <li>JWT access/refresh token architecture</li>
+              <li>Token rotation and revocation</li>
+              <li>RBAC and permissions</li>
+              <li>OAuth 2.0 / OpenID Connect concepts</li>
+              <li>Email verification and password reset</li>
+              <li>MFA/2FA concepts</li>
+              <li>CSRF, XSS and session security</li>
+              <li>Protected frontend routes and backend guards</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="mongodb">
+            <h3>16 · MongoDB</h3>
+            <ul>
+              <li>Documents, collections and BSON</li>
+              <li>CRUD and query operators</li>
+              <li>Indexes and compound indexes</li>
+              <li>Schema design and embedding vs referencing</li>
+              <li>Aggregation pipeline</li>
+              <li>Transactions</li>
+              <li>MongoDB Atlas and backups</li>
+              <li>Mongoose schemas, models and validation</li>
+              <li>Populate, middleware and performance</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="sql">
+            <h3>17 · SQL + PostgreSQL</h3>
+            <ul>
+              <li>Tables, rows, columns and constraints</li>
+              <li>SELECT, INSERT, UPDATE, DELETE</li>
+              <li>WHERE, GROUP BY, HAVING, ORDER BY</li>
+              <li>JOINs and subqueries</li>
+              <li>Indexes and query plans</li>
+              <li>Normalization and denormalization</li>
+              <li>Transactions and ACID</li>
+              <li>Isolation levels</li>
+              <li>Foreign keys and relational modeling</li>
+              <li>PostgreSQL JSON/JSONB and extensions</li>
+              <li>ORMs: Prisma / Drizzle / Sequelize concepts</li>
+              <li>Migrations and seed data</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="redis">
+            <h3>18 · Redis & Caching</h3>
+            <ul>
+              <li>Key/value model and data structures</li>
+              <li>Cache-aside pattern</li>
+              <li>TTL and invalidation</li>
+              <li>Session storage</li>
+              <li>Rate limiting</li>
+              <li>Pub/Sub</li>
+              <li>Queues and background jobs</li>
+              <li>Distributed locks</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="realtime">
+            <h3>19 · Real-Time Systems</h3>
+            <ul>
+              <li>WebSockets</li>
+              <li>Socket.IO architecture</li>
+              <li>Rooms, namespaces and presence</li>
+              <li>Typing indicators and read receipts</li>
+              <li>Realtime notifications</li>
+              <li>Server-Sent Events</li>
+              <li>Connection recovery and scaling</li>
+              <li>Redis adapter concepts</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="testing">
+            <h3>20 · Testing & Quality</h3>
+            <ul>
+              <li>Unit, integration, component and E2E testing</li>
+              <li>Vitest/Jest fundamentals</li>
+              <li>React Testing Library</li>
+              <li>Playwright/Cypress concepts</li>
+              <li>API testing and Postman</li>
+              <li>Mocking and test fixtures</li>
+              <li>Test databases</li>
+              <li>Coverage and CI test gates</li>
+              <li>Linting, formatting and type checking</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="security">
+            <h3>21 · Web Security</h3>
+            <ul>
+              <li>OWASP Top 10</li>
+              <li>XSS and output encoding</li>
+              <li>CSRF protection</li>
+              <li>SQL/NoSQL injection prevention</li>
+              <li>CORS</li>
+              <li>Content Security Policy</li>
+              <li>Secure cookies and headers</li>
+              <li>Rate limiting and brute-force protection</li>
+              <li>Secrets management</li>
+              <li>Dependency and supply-chain security</li>
+              <li>Input validation and file upload security</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="architecture">
+            <h3>22 · Software Architecture</h3>
+            <ul>
+              <li>Separation of concerns</li>
+              <li>Clean Architecture</li>
+              <li>Hexagonal architecture</li>
+              <li>Domain-driven design basics</li>
+              <li>SOLID principles</li>
+              <li>Repository/service patterns</li>
+              <li>Dependency inversion</li>
+              <li>Monolith vs modular monolith</li>
+              <li>Microservices trade-offs</li>
+              <li>Event-driven architecture</li>
+              <li>Message brokers and asynchronous workflows</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="queues">
+            <h3>23 · Background Jobs & Messaging</h3>
+            <ul>
+              <li>Job queues and workers</li>
+              <li>BullMQ concepts</li>
+              <li>RabbitMQ concepts</li>
+              <li>Kafka concepts</li>
+              <li>Retries and exponential backoff</li>
+              <li>Dead-letter queues</li>
+              <li>Idempotent consumers</li>
+              <li>Scheduled jobs / cron</li>
+              <li>Email, report and media processing pipelines</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="devops">
+            <h3>24 · DevOps & Deployment</h3>
+            <ul>
+              <li>Git, branches, pull requests and conventional commits</li>
+              <li>GitHub Actions CI/CD</li>
+              <li>Docker images and containers</li>
+              <li>Docker Compose</li>
+              <li>Multi-stage builds</li>
+              <li>Reverse proxies and Nginx</li>
+              <li>Linux server fundamentals</li>
+              <li>Environment separation: dev/staging/prod</li>
+              <li>Vercel, Netlify and cloud deployment</li>
+              <li>AWS basics: EC2, S3, RDS, CloudFront concepts</li>
+              <li>Secrets and configuration management</li>
+              <li>Backups, migrations and rollback strategy</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="observability">
+            <h3>25 · Observability & Performance</h3>
+            <ul>
+              <li>Structured logging</li>
+              <li>Error tracking</li>
+              <li>Metrics and health checks</li>
+              <li>Tracing concepts</li>
+              <li>APM concepts</li>
+              <li>Core Web Vitals</li>
+              <li>Bundle analysis and code splitting</li>
+              <li>Database query optimization</li>
+              <li>Caching and CDN strategy</li>
+              <li>Load testing and bottleneck analysis</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="ai">
+            <h3>26 · AI Engineering for Web Developers</h3>
+            <ul>
+              <li>LLM API integration</li>
+              <li>Prompt design and structured output</li>
+              <li>Streaming AI responses</li>
+              <li>Tool/function calling concepts</li>
+              <li>Embeddings and vector search</li>
+              <li>RAG architecture</li>
+              <li>AI chat interfaces</li>
+              <li>File/document ingestion</li>
+              <li>AI agents and workflows</li>
+              <li>Usage limits, cost controls and safety</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="fullstack">
+            <h3>27 · Full-Stack Product Engineering</h3>
+            <ul>
+              <li>Authentication + authorization</li>
+              <li>Admin dashboards</li>
+              <li>Payments and subscriptions</li>
+              <li>Orders and inventory</li>
+              <li>Email systems</li>
+              <li>File/media storage</li>
+              <li>Search and filtering</li>
+              <li>Notifications</li>
+              <li>Analytics</li>
+              <li>Role/permission systems</li>
+              <li>Audit logs</li>
+              <li>Production deployment</li>
+            </ul>
+          </article>
+
+          <article class="topic-card" id="system-design">
+            <h3>28 · System Design — God Mode</h3>
+            <ul>
+              <li>Scalability and availability</li>
+              <li>Horizontal vs vertical scaling</li>
+              <li>Load balancers</li>
+              <li>CDNs</li>
+              <li>Caching layers</li>
+              <li>Database replication and sharding concepts</li>
+              <li>CAP theorem</li>
+              <li>Consistency models</li>
+              <li>Queues and event streaming</li>
+              <li>Distributed systems and failure modes</li>
+              <li>Rate limits and quotas</li>
+              <li>
+                Designing social networks, SaaS, marketplaces and streaming
+                systems
+              </li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="mega-roadmap">
+          <h3>Project Progression — Beginner → God Mode</h3>
+          <ol>
+            <li>
+              Static portfolio → resume → landing pages → galleries → blogs
+            </li>
+            <li>
+              CSS component collection → responsive clones → animation showcase
+              → design system
+            </li>
+            <li>
+              JavaScript calculator → clock → stopwatch → todo → notes → games →
+              API apps
+            </li>
+            <li>
+              React components → hooks → routing → API clients → state
+              management → dashboards
+            </li>
+            <li>
+              Next.js content site → auth → CMS → SaaS → full-stack product
+            </li>
+            <li>
+              Node/Express REST API → MongoDB CRUD → auth → file uploads →
+              realtime → queues
+            </li>
+            <li>
+              PostgreSQL application → transactions → caching → background
+              workers → production API
+            </li>
+            <li>
+              Dockerized full-stack app → CI/CD → monitoring → cloud deployment
+            </li>
+            <li>AI application → RAG → AI SaaS → AI website builder</li>
+            <li>
+              God Mode: social network, e-commerce ecosystem, streaming
+              platform, collaborative editor, 3D experience
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- FRONTEND -->
+      <section class="section" id="fe-foundations">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">01 · Frontend</div>
+            <h2>HTML & CSS Foundations</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/html5/E34F26"
+            alt="HTML5"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const FE_FOUNDATIONS = [
+              ["Personal Portfolio", "Semantic HTML · typography · layout"],
+              ["Resume Website", "Grid · Flexbox · print styling"],
+              [
+                "Restaurant Landing Page",
+                "Hero sections · CTA · responsive images",
+              ],
+              ["Coffee Shop Website", "Cards · navigation · footer"],
+              ["Photography Gallery", "CSS Grid · hover effects · masonry"],
+              ["Blog Homepage", "Article structure · hierarchy"],
+              ["Product Showcase", "Product cards · pricing layouts"],
+              [
+                "Fashion Brand Landing Page",
+                "Fullscreen sections · elegant typography",
+              ],
+              ["Travel Agency Website", "Multi-section responsive composition"],
+              ["Gym / Fitness Landing Page", "Dark theme · hero · CTA"],
+              ["SaaS Landing Page", "Marketing sections · conversion UI"],
+              ["Startup Website", "Product storytelling · responsive sections"],
+              ["University Portal", "Information architecture · forms"],
+              ["Hotel Landing Page", "Booking-focused UI"],
+              [
+                "Real Estate Landing Page",
+                "Listings · cards · responsive layouts",
+              ],
+              ["Netflix Homepage Clone", "Responsive reverse engineering"],
+              ["Spotify Homepage Clone", "Complex navigation · responsive UI"],
+              [
+                "Apple Homepage Clone",
+                "Typography · whitespace · storytelling",
+              ],
+              [
+                "Tesla Landing Page Clone",
+                "Hero composition · responsive media",
+              ],
+              ["YouTube Homepage Clone", "Dense responsive layouts"],
+              ["Airbnb Homepage Clone", "Cards · filters · responsive grids"],
+              [
+                "Discord Landing Page Clone",
+                "Illustration-heavy responsive design",
+              ],
+              ["Instagram Profile Clone", "Profile UI · grids"],
+              ["X / Twitter Feed Clone", "Feed layout · responsive components"],
+              [
+                "Amazon Product Page Clone",
+                "Dense e-commerce layout · information hierarchy",
+              ],
+            ];
+            function renderProjects(arr, start = 1) {
+              return arr
+                .map((x, i) => {
+                  const title = Array.isArray(x) ? x[0] : String(x);
+                  const desc = Array.isArray(x)
+                    ? x[1] || ""
+                    : "Build · refine · ship";
+                  return `<article class="card project"><span class="num">${start + i}</span><h3>${title}</h3><p>${desc}</p></article>`;
+                })
+                .join("");
+            }
+            document.write(renderProjects(FE_FOUNDATIONS, 1));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Semantic HTML</span
+          ><span class="skill">Flexbox</span><span class="skill">CSS Grid</span
+          ><span class="skill">Responsive Design</span
+          ><span class="skill">Typography</span
+          ><span class="skill">Accessibility</span
+          ><span class="skill">SEO Structure</span>
+        </div>
+      </section>
+
+      <section class="section" id="fe-ui">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">02 · Frontend</div>
+            <h2>CSS, UI & Animation</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/css/1572B6"
+            alt="CSS3"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const FE_UI = [
+              [
+                "Animated Login Form",
+                "Transitions · focus states · form layout",
+              ],
+              ["Neon Button Collection", "Hover effects · glow · keyframes"],
+              [
+                "Animated Navigation Menu",
+                "Dropdown · mobile toggle · transitions",
+              ],
+              [
+                "Loading Spinner Collection",
+                "Pure CSS loaders · infinite animation",
+              ],
+              ["CSS Weather Icons", "Shapes · gradients · micro-animation"],
+              [
+                "Glowing Card System",
+                "Box-shadow · hover lift · glass effects",
+              ],
+              ["Parallax Website", "Scroll layers · depth · performance"],
+              ["CSS-only Accordion", "Details/summary or checkbox hack"],
+              ["CSS Timeline", "Vertical flow · markers · responsive"],
+              ["Animated Pricing Table", "Cards · highlight · scale on hover"],
+              ["Tooltip", "Positioning · fade · accessibility"],
+              ["Snackbar", "Toast UI · enter/exit animation"],
+              ["Progress Bar", "Determinate / indeterminate styles"],
+              ["Range Slider", "Custom thumb · track · value UI"],
+              ["Notification System", "Stack · dismiss · variants"],
+              ["Toggle Switch", "Checkbox-driven · theme-ready"],
+              ["Star Rating", "Interactive stars · half ratings"],
+              ["Search Bar", "Expand · focus ring · clear button"],
+              ["Modal Popup", "Overlay · focus trap · transitions"],
+              ["Image Slider", "Carousel · dots · swipe-friendly"],
+              ["Scroll-to-Top Button", "Reveal on scroll · smooth behavior"],
+            ];
+            document.write(renderProjects(FE_UI, 26));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Transitions</span
+          ><span class="skill">Transforms</span
+          ><span class="skill">Keyframes</span
+          ><span class="skill">Micro-interactions</span
+          ><span class="skill">Component styling</span
+          ><span class="skill">Responsive UI</span>
+        </div>
+      </section>
+
+      <section class="section" id="fe-js">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">03 · Frontend</div>
+            <h2>JavaScript Foundations</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/javascript/F7DF1E"
+            alt="JavaScript"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const FE_JS = [
+              ["Counter App", "State · events · DOM updates"],
+              ["Calculator", "Expression parsing · keypad UI"],
+              ["Digital Clock", "Date/time · setInterval"],
+              ["Stopwatch", "Start/stop/lap · precise timing"],
+              ["Countdown Timer", "Input · remaining time · alerts"],
+              ["Background Color Changer", "Random colors · local preference"],
+              ["Gradient Generator", "CSS gradients · copy output"],
+              ["Color Palette Generator", "Harmony · export CSS variables"],
+              ["BMI Calculator", "Form inputs · result categories"],
+              ["Tip Calculator", "Split bill · percentage math"],
+              ["Temperature Converter", "Unit conversion · live update"],
+              ["Word Counter", "Textarea · words/chars/reading time"],
+              ["Random Quote Generator", "Array of quotes · share UI"],
+              ["Dice Roller", "Random · animation · history"],
+              ["Form Validation", "Required · patterns · error messages"],
+              ["Password Generator", "Entropy options · copy button"],
+              ["Rock Paper Scissors", "Game loop · score tracking"],
+              ["Modal Controller", "Open/close · backdrop · keyboard"],
+              ["Dark / Light Mode", "Theme toggle · CSS variables · persist"],
+              ["Copy-to-Clipboard Tool", "Clipboard API · feedback toast"],
+            ];
+            document.write(renderProjects(FE_JS, 47));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">DOM</span><span class="skill">Events</span
+          ><span class="skill">Arrays</span><span class="skill">Objects</span
+          ><span class="skill">Functions</span
+          ><span class="skill">LocalStorage</span
+          ><span class="skill">Modules</span
+          ><span class="skill">Async JavaScript</span>
+        </div>
+      </section>
+
+      <section class="section" id="fe-js-apps">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">04 · Frontend</div>
+            <h2>JavaScript Applications</h2>
+          </div>
+          <span class="section-kicker">Build systems, not snippets</span>
+        </div>
+        <div class="grid">
+          <script>
+            const FE_APPS = [
+              ["Todo App", "CRUD · filters · LocalStorage"],
+              ["Notes App", "Rich list · search · persist"],
+              ["Expense Tracker", "Categories · charts · totals"],
+              ["Habit Tracker", "Streaks · calendar · goals"],
+              ["Flashcard Learning App", "Deck · flip · spaced review"],
+              ["Quiz Application", "Questions · score · results"],
+              ["Music Player", "Playlist · progress · controls"],
+              ["Image Gallery", "Lightbox · grid · filters"],
+              ["Image Slider", "Autoplay · controls · indicators"],
+              ["Accordion System", "Expand/collapse · a11y"],
+              ["Tabs Component", "Panels · keyboard navigation"],
+              ["Interactive Calendar", "Month view · events · select"],
+              ["Dynamic Form Builder", "Add fields · validation · export"],
+              ["Drag & Drop List", "Reorder · HTML5 DnD"],
+              ["Kanban Board", "Columns · cards · drag between"],
+              ["Virtual Keyboard", "On-screen keys · input target"],
+              ["Markdown Previewer", "Live parse · side-by-side"],
+              ["Custom Video Player", "Custom controls · fullscreen"],
+              ["Typing Speed Test", "WPM · accuracy · timer"],
+              ["Memory Matching Game", "Grid · flip · match logic"],
+            ];
+            document.write(renderProjects(FE_APPS, 67));
+          </script>
+        </div>
+      </section>
+
+      <section class="section" id="fe-games">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">05 · Frontend</div>
+            <h2>JavaScript Games</h2>
+          </div>
+          <span>Logic · State · Timing</span>
+        </div>
+        <div class="grid">
+          <script>
+            const GAMES = [
+              "Tic-Tac-Toe",
+              "Snake",
+              "Pong",
+              "Flappy Bird Clone",
+              "Tetris Clone",
+              "Whack-a-Mole",
+              "Rock Paper Scissors",
+              "Hangman",
+              "Maze Game",
+              "Chess UI Prototype",
+              "Memory Game",
+              "Reaction Speed Game",
+              "Number Guessing Game",
+              "Simon Says",
+              "Typing Game",
+            ];
+            document.write(renderProjects(GAMES, 87));
+          </script>
+        </div>
+      </section>
+
+      <section class="section" id="bootstrap">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">06 · Frontend</div>
+            <h2>Bootstrap</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/bootstrap/7952B3"
+            alt="Bootstrap"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const BOOT = [
+              "SaaS Website",
+              "Startup Website",
+              "Admin Dashboard",
+              "Event Management Website",
+              "University Portal",
+              "Hotel Booking UI",
+              "Real Estate Platform",
+              "Medical Clinic Website",
+              "Car Rental Platform",
+              "Crypto Landing Page",
+              "E-commerce Homepage",
+              "Multi-Step Checkout",
+              "Analytics Dashboard",
+              "CRM Dashboard",
+              "Banking Dashboard",
+              "Travel Booking Interface",
+              "Food Delivery Website",
+              "Course Platform",
+              "Job Board",
+              "Podcast Platform",
+            ];
+            document.write(renderProjects(BOOT, 102));
+          </script>
+        </div>
+      </section>
+
+      <section class="section" id="tailwind">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">07 · Frontend</div>
+            <h2>Tailwind CSS & Design Systems</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/tailwindcss/06B6D4"
+            alt="Tailwind CSS"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const TW = [
+              "Modern Portfolio",
+              "Agency Landing Page",
+              "AI Product Landing Page",
+              "NFT Marketplace",
+              "Chat Application",
+              "Productivity Dashboard",
+              "Finance Tracker",
+              "Mobile Banking UI",
+              "Social Media Dashboard",
+              "Video Streaming UI",
+              "Animated Hero Website",
+              "Glassmorphism Dashboard",
+              "Cyberpunk Landing Page",
+              "Animated Sidebar",
+              "Floating Cards Interface",
+              "Interactive Pricing System",
+              "Animated Testimonials",
+              "Dark / Light Theme System",
+              "Custom Design System",
+              "Component Library",
+            ];
+            document.write(renderProjects(TW, 122));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Utility-first CSS</span
+          ><span class="skill">Design Tokens</span
+          ><span class="skill">Theme Architecture</span
+          ><span class="skill">Component Libraries</span
+          ><span class="skill">Animation</span>
+        </div>
+      </section>
+
+      <section class="section" id="fe-api">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">08 · Frontend</div>
+            <h2>API-Based Frontend</h2>
+          </div>
+          <span>Fetch · Async · State · UX</span>
+        </div>
+        <div class="grid">
+          <script>
+            const API_FE = [
+              "Random Quote Generator",
+              "Weather App",
+              "Country Explorer",
+              "Pokémon Browser",
+              "Movie Search App",
+              "Recipe Finder",
+              "Joke Generator",
+              "Cat Facts App",
+              "Random User Directory",
+              "Crypto Price Tracker",
+              "Dictionary App",
+              "NASA Image Explorer",
+              "Google Books Search",
+              "IP Address Tracker",
+              "SpaceX Launch Info",
+              "Todo App with API",
+              "E-commerce Store with API",
+              "Admin Dashboard with API",
+              "GitHub Profile Analyzer",
+              "News Aggregator",
+              "Music Search Platform",
+              "YouTube Explorer",
+              "Anime Discovery App",
+              "Currency Exchange App",
+              "5-Day Weather Forecast",
+              "Stock Market Dashboard",
+              "Product Search with Debounce",
+              "File Upload Client",
+              "Infinite Scroll Feed",
+              "Search with Debounce",
+            ];
+            document.write(renderProjects(API_FE, 142));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">REST</span><span class="skill">Fetch</span
+          ><span class="skill">Loading states</span
+          ><span class="skill">Error states</span
+          ><span class="skill">Empty states</span
+          ><span class="skill">Debouncing</span
+          ><span class="skill">Pagination</span
+          ><span class="skill">Infinite Scroll</span
+          ><span class="skill">Caching</span>
+        </div>
+      </section>
+
+      <section class="section" id="typescript-projects">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">09 · Frontend</div>
+            <h2>TypeScript</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/typescript/3178C6"
+            alt="TypeScript"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const TS = [
+              [
+                "Typed Calculator",
+                "Strict types · unions · function signatures",
+              ],
+              [
+                "Todo App in TypeScript",
+                "Interfaces · generics · LocalStorage",
+              ],
+              [
+                "Weather Client (typed)",
+                "Fetch · typed API responses · error unions",
+              ],
+              ["Form Validator Library", "Generic validators · result types"],
+              [
+                "Utility Types Playground",
+                "Partial · Pick · Omit · Record · ReturnType",
+              ],
+              [
+                "Discriminated Unions Demo",
+                "State machines · narrow · exhaustiveness",
+              ],
+              ["Typed Event Emitter", "Generics · typed events · listeners"],
+              ["API Client SDK", "Axios/fetch wrappers · DTO interfaces"],
+              [
+                "Zustand/Redux typed store",
+                "Typed slices · selectors · actions",
+              ],
+              [
+                "React + TypeScript Components",
+                "Props · children · generic components",
+              ],
+              [
+                "Custom Hooks in TS",
+                "useLocalStorage · useFetch · return types",
+              ],
+              [
+                "Zod + TypeScript Forms",
+                "Schema inference · runtime validation",
+              ],
+              ["Node CLI in TypeScript", "ts-node · commander · typed args"],
+              [
+                "Express API with TypeScript",
+                "Typed req/res · middleware · DTOs",
+              ],
+              [
+                "Full TS Design System",
+                "Typed tokens · component variants · props",
+              ],
+            ];
+            document.write(renderProjects(TS, 172));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Interfaces</span
+          ><span class="skill">Generics</span><span class="skill">Unions</span
+          ><span class="skill">Narrowing</span
+          ><span class="skill">Utility Types</span
+          ><span class="skill">Strict Mode</span
+          ><span class="skill">tsconfig</span
+          ><span class="skill">Type-safe APIs</span>
+        </div>
+      </section>
+
+      <section class="section" id="react">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">10 · Frontend</div>
+            <h2>React Fundamentals</h2>
+          </div>
+          <img
+            class="logo react"
+            src="https://cdn.simpleicons.org/react/61DAFB"
+            alt="React"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const REACT = [
+              "React Counter",
+              "React Calculator",
+              "React Todo",
+              "React Notes",
+              "React Stopwatch",
+              "React Pomodoro",
+              "React Quiz",
+              "React Weather",
+              "React Currency Converter",
+              "React GitHub Finder",
+              "React Movie Database",
+              "React Joke Generator",
+              "React Dictionary",
+              "React Product Filter",
+              "React Image Gallery",
+            ];
+            document.write(renderProjects(REACT, 187));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Components</span><span class="skill">Props</span
+          ><span class="skill">State</span><span class="skill">useState</span
+          ><span class="skill">useEffect</span><span class="skill">Forms</span
+          ><span class="skill">Custom Hooks</span>
+        </div>
+      </section>
+
+      <section class="section" id="react-advanced">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">11 · Frontend</div>
+            <h2>Advanced React</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/redux/764ABC"
+            alt="Redux"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const RA = [
+              "Shopping Cart",
+              "Product Filter",
+              "Pagination Component",
+              "Infinite Scroll",
+              "Theme Switcher",
+              "Multi-Step Form",
+              "Formik + Yup Form",
+              "Authentication UI",
+              "Protected Routes",
+              "Accordion Component",
+              "Tabs Component",
+              "Expense Tracker",
+              "Habit Tracker",
+              "File Upload System",
+              "Advanced Search System",
+              "Login / Register System",
+              "Authentication Dashboard",
+              "Protected Dashboard",
+              "Role-Based Admin Panel",
+              "User Profile System",
+              "Permission Management UI",
+              "Session Management",
+              "JWT Authentication Interface",
+              "OAuth Login UI",
+              "Multi-user Dashboard",
+              "E-commerce Store",
+              "Food Delivery Platform",
+              "Hotel Booking App",
+              "Flight Search UI",
+              "Car Marketplace",
+              "Real Estate Platform",
+              "Course Platform",
+              "Job Board",
+              "Podcast Platform",
+              "Social Media Feed",
+              "Expense Dashboard",
+              "Analytics Dashboard",
+              "CRM",
+              "Banking Dashboard",
+              "Travel Booking Platform",
+              "Real-Time Chat",
+              "Trello Clone",
+              "Collaborative Notes",
+              "Multi-user Blog",
+              "Spotify Clone",
+              "Netflix Clone",
+              "Social Media Platform",
+              "Drag-and-Drop Website Builder",
+              "Collaborative Workspace",
+              "Advanced Admin Panel",
+              "CMS Dashboard",
+              "Real-Time Stock Dashboard",
+              "AI Chat Interface",
+              "Browser Code Editor",
+              "Figma-inspired Editor",
+            ];
+            document.write(renderProjects(RA, 202));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">React Router</span
+          ><span class="skill">Context API</span
+          ><span class="skill">Redux Toolkit</span
+          ><span class="skill">Zustand</span
+          ><span class="skill">Performance</span
+          ><span class="skill">Memoization</span
+          ><span class="skill">WebSockets</span
+          ><span class="skill">Optimistic UI</span>
+        </div>
+      </section>
+
+      <section class="section" id="next">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">12 · Frontend</div>
+            <h2>Next.js</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/nextdotjs/FFFFFF"
+            alt="Next.js"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const NEXT = [
+              "SEO Blog",
+              "Portfolio + CMS",
+              "Documentation Website",
+              "Multi-language Website",
+              "SaaS Website",
+              "E-commerce Website",
+              "Authentication System",
+              "Course Platform",
+              "CMS Dashboard",
+              "AI Content Generator",
+              "Developer Documentation Platform",
+              "SaaS Billing Dashboard",
+              "Startup Platform",
+              "Full Admin System",
+              "Multi-role Business Platform",
+            ];
+            document.write(renderProjects(NEXT, 256));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">App Router</span
+          ><span class="skill">Server Components</span
+          ><span class="skill">SSR</span><span class="skill">SSG</span
+          ><span class="skill">ISR</span><span class="skill">Metadata</span
+          ><span class="skill">SEO</span><span class="skill">Middleware</span
+          ><span class="skill">Caching</span
+          ><span class="skill">Server Actions</span>
+        </div>
+      </section>
+
+      <section class="section" id="ai-fe">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">13 · Frontend</div>
+            <h2>AI + Next.js</h2>
+          </div>
+          <span>Modern product UX</span>
+        </div>
+        <div class="grid">
+          <script>
+            const AIFE = [
+              "AI Chat Interface",
+              "AI Writing Assistant",
+              "AI Content Generator",
+              "AI Image Gallery",
+              "AI Resume Builder",
+              "AI Study Assistant",
+              "AI Code Assistant",
+              "AI Document Analyzer",
+              "AI SaaS Dashboard",
+              "AI Website Builder",
+            ];
+            document.write(renderProjects(AIFE, 271));
+          </script>
+        </div>
+      </section>
+
+      <section class="section" id="three">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">14 · Frontend / Creative</div>
+            <h2>Three.js God Mode</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/threedotjs/FFFFFF"
+            alt="Three.js"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const THREE = [
+              "Rotating 3D Cube",
+              "Interactive Solar System",
+              "Floating Particles Background",
+              "3D Product Viewer",
+              "Animated Earth",
+              "3D Portfolio",
+              "3D Car Showcase",
+              "Interactive Galaxy Simulation",
+              "FPS Camera Demo",
+              "3D Music Visualizer",
+              "Open World Exploration Scene",
+              "3D Multiplayer Environment",
+              "Cyberpunk City Experience",
+              "Interactive Metaverse Room",
+              "Cinematic Sci-Fi Experience",
+            ];
+            document.write(renderProjects(THREE, 281));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Scene</span><span class="skill">Camera</span
+          ><span class="skill">Renderer</span><span class="skill">Geometry</span
+          ><span class="skill">Materials</span
+          ><span class="skill">Lighting</span><span class="skill">Textures</span
+          ><span class="skill">Animation</span
+          ><span class="skill">Particles</span
+          ><span class="skill">Shaders</span>
+        </div>
+      </section>
+
+      <!-- BACKEND -->
+
+      <section class="section" id="vue">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">15 · Frontend</div>
+            <h2>Vue.js Fundamentals</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/vuedotjs/42B883"
+            alt="Vue.js"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const VUE = [
+              ["Vue Counter", "Reactivity · template refs · events"],
+              ["Vue Todo", "v-model · lists · LocalStorage"],
+              ["Vue Notes App", "Components · props · emits"],
+              ["Vue Weather", "Composition API · fetch · loading states"],
+              ["Vue Quiz", "Computed · watchers · score flow"],
+              ["Vue Form Builder", "Dynamic fields · validation"],
+              ["Vue Router SPA", "Routes · params · navigation guards"],
+              ["Vue Pinia Store", "State · actions · getters"],
+              ["Vue Markdown Editor", "Slots · preview · debounce"],
+              ["Vue Image Gallery", "Grid · modal · transitions"],
+              ["Vue Kanban Board", "Drag state · columns · persist"],
+              ["Vue Auth UI", "Login form · protected views"],
+              ["Vue Dashboard", "Charts · cards · responsive layout"],
+              ["Vue Chat UI", "Messages · scroll · composables"],
+              ["Vue Component Library", "Reusable UI · props typing"],
+            ];
+            document.write(renderProjects(VUE, 601));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Composition API</span
+          ><span class="skill">Reactivity</span
+          ><span class="skill">Vue Router</span><span class="skill">Pinia</span
+          ><span class="skill">Composables</span><span class="skill">Slots</span
+          ><span class="skill">Directives</span>
+        </div>
+      </section>
+
+      <section class="section" id="vue-advanced">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">16 · Frontend</div>
+            <h2>Advanced Vue & Ecosystem</h2>
+          </div>
+          <span>Pinia · VueUse · UI kits</span>
+        </div>
+        <div class="grid">
+          <script>
+            const VUEA = [
+              ["VueUse Toolkit App", "Composable utilities · sensors · state"],
+              ["Vuetify Admin Panel", "Material components · layout system"],
+              ["Naive UI Dashboard", "Theming · data tables · forms"],
+              ["Vue Real-Time Board", "WebSocket · optimistic UI"],
+              ["Vue E-commerce Store", "Cart · filters · checkout flow"],
+              ["Vue Multi-step Wizard", "Stepper · validation · persistence"],
+              ["Vue Infinite Feed", "Virtual scroll · pagination"],
+              ["Vue i18n App", "Locale switching · pluralization"],
+              ["Vue Testing Suite", "Vitest · Vue Test Utils"],
+              ["Vue Design System", "Tokens · variants · documentation"],
+            ];
+            document.write(renderProjects(VUEA, 616));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">VueUse</span><span class="skill">Vuetify</span
+          ><span class="skill">Naive UI</span><span class="skill">Vitest</span
+          ><span class="skill">i18n</span><span class="skill">Performance</span>
+        </div>
+      </section>
+
+      <section class="section" id="nuxt">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">17 · Frontend</div>
+            <h2>Nuxt</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/nuxt/00DC82"
+            alt="Nuxt"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const NUXT = [
+              ["Nuxt Blog", "File routing · content · SEO"],
+              ["Nuxt Portfolio CMS", "Server routes · markdown"],
+              ["Nuxt SaaS Landing", "SSR · metadata · performance"],
+              ["Nuxt Auth App", "Middleware · sessions · protected pages"],
+              ["Nuxt E-commerce", "useFetch · cart · checkout"],
+              ["Nuxt Admin Dashboard", "Layouts · role guards"],
+              ["Nuxt API + UI", "Nitro handlers · typed clients"],
+              ["Nuxt i18n Site", "Locale routes · SEO hreflang"],
+              ["Nuxt Hybrid App", "ISR · route rules · caching"],
+              ["Nuxt Full Product", "Auth · DB · deployment"],
+            ];
+            document.write(renderProjects(NUXT, 626));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">File-based routing</span
+          ><span class="skill">Nitro</span
+          ><span class="skill">SSR / SSG / ISR</span
+          ><span class="skill">useFetch</span
+          ><span class="skill">Middleware</span
+          ><span class="skill">Modules</span>
+        </div>
+      </section>
+
+      <section class="section" id="angular">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">18 · Frontend</div>
+            <h2>Angular</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/angular/DD0031"
+            alt="Angular"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const ANG = [
+              ["Angular Counter", "Components · interpolation · events"],
+              ["Angular Todo", "Services · two-way binding · forms"],
+              ["Angular Notes", "Standalone components · signals"],
+              ["Angular Weather", "HttpClient · async pipe · error handling"],
+              ["Angular Router App", "Routes · guards · lazy modules"],
+              ["Angular Reactive Forms", "FormBuilder · validators · errors"],
+              ["Angular Auth Flow", "Interceptors · JWT · protected routes"],
+              ["Angular Dashboard", "Material · tables · charts"],
+              ["Angular CRUD Admin", "REST client · dialogs · pagination"],
+              ["Angular NgRx Store", "Actions · reducers · effects"],
+              ["Angular Signals Store", "Modern state · computed"],
+              ["Angular Real-Time UI", "RxJS websockets · subjects"],
+              ["Angular Design System", "CDK · shared components"],
+              ["Angular E-commerce", "Cart · filters · checkout"],
+              ["Angular Full SPA", "Auth · API · Material · tests"],
+            ];
+            document.write(renderProjects(ANG, 636));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Components</span><span class="skill">RxJS</span
+          ><span class="skill">DI</span><span class="skill">Reactive Forms</span
+          ><span class="skill">HttpClient</span
+          ><span class="skill">NgRx / Signals</span
+          ><span class="skill">Angular Material</span
+          ><span class="skill">Standalone</span>
+        </div>
+      </section>
+
+      <section class="section" id="electron">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">19 · Desktop</div>
+            <h2>Electron</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/electron/47848F"
+            alt="Electron"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const ELEC = [
+              ["Hello Electron", "Main + renderer · BrowserWindow"],
+              ["Electron Markdown Editor", "IPC · file open/save · menu"],
+              ["Electron Notes App", "Local storage · tray · shortcuts"],
+              ["Electron Todo Desktop", "Context isolation · preload"],
+              ["Electron System Monitor", "Native APIs · CPU/memory widgets"],
+              ["Electron Chat Client", "WebSocket · multi-window"],
+              ["Electron Media Player", "File dialogs · playback controls"],
+              ["Electron + React Shell", "Vite/CRA · secure preload bridge"],
+              ["Electron + Vue Shell", "Vue renderer · Pinia · IPC"],
+              ["Electron Auto-Updater", "electron-builder · release flow"],
+              ["Electron Secure Vault", "Encryption · keychain patterns"],
+              ["Electron Screenshot Tool", "Desktop capture · save pipeline"],
+              ["Electron Clipboard Manager", "History · global shortcuts"],
+              ["Electron Packaged App", "Installers · code signing basics"],
+              ["Full Desktop Product", "Auth · sync · offline · updates"],
+            ];
+            document.write(renderProjects(ELEC, 651));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Main / Renderer</span
+          ><span class="skill">IPC</span><span class="skill">Preload</span
+          ><span class="skill">Context Isolation</span
+          ><span class="skill">electron-builder</span
+          ><span class="skill">Native APIs</span
+          ><span class="skill">Security</span>
+        </div>
+      </section>
+
+      <section class="section" id="be-fund">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">20 · Backend</div>
+            <h2>Programming & Backend Fundamentals</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/javascript/F7DF1E"
+            alt="JavaScript"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const BE_F = [
+              "CLI Calculator",
+              "CLI Todo App",
+              "Number Guessing Game",
+              "Password Generator",
+              "Unit Converter",
+              "File Renamer",
+              "File Organizer",
+              "JSON Data Processor",
+              "Contact Manager",
+              "Expense Tracker",
+              "Quiz CLI",
+              "Notes CLI",
+              "Log File Analyzer",
+              "Simple Authentication Simulator",
+              "CLI Inventory Manager",
+            ];
+            document.write(renderProjects(BE_F, 296));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">JavaScript</span
+          ><span class="skill">Node Runtime</span
+          ><span class="skill">Modules</span><span class="skill">OOP</span
+          ><span class="skill">Functional Programming</span
+          ><span class="skill">JSON</span><span class="skill">File System</span
+          ><span class="skill">Environment Variables</span>
+        </div>
+      </section>
+
+      <section class="section" id="node">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">21 · Backend</div>
+            <h2>Node.js</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/nodedotjs/68A063"
+            alt="Node.js"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const NODE = [
+              "HTTP Hello World Server",
+              "Static File Server",
+              "JSON API Server",
+              "URL Shortener",
+              "Simple Logger",
+              "File Upload Server",
+              "Image Metadata Server",
+              "Contact API",
+              "Todo API",
+              "Notes API",
+              "Calculator API",
+              "Authentication API Prototype",
+              "Webhook Receiver",
+              "IP Information API",
+              "Simple REST API",
+            ];
+            document.write(renderProjects(NODE, 311));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Event Loop</span><span class="skill">HTTP</span
+          ><span class="skill">Streams</span><span class="skill">Buffers</span
+          ><span class="skill">Events</span
+          ><span class="skill">Async Programming</span>
+        </div>
+      </section>
+
+      <section class="section" id="express">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">22 · Backend</div>
+            <h2>Express.js</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/express/FFFFFF"
+            alt="Express"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const EXP = [
+              "Todo REST API",
+              "Notes REST API",
+              "Blog REST API",
+              "Product API",
+              "User API",
+              "Book API",
+              "Movie API",
+              "Recipe API",
+              "Expense Tracker API",
+              "Habit Tracker API",
+              "Task Management API",
+              "Contact Management API",
+              "URL Shortener API",
+              "File Upload API",
+              "Image Upload API",
+              "Search API",
+              "Pagination API",
+              "Filtering API",
+              "Sorting API",
+              "Full CRUD API",
+            ];
+            document.write(renderProjects(EXP, 326));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Routes</span><span class="skill">Controllers</span
+          ><span class="skill">Middleware</span><span class="skill">MVC</span
+          ><span class="skill">Validation</span
+          ><span class="skill">Error Handling</span
+          ><span class="skill">REST</span>
+        </div>
+      </section>
+
+      <section class="section" id="mongo">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">23 · Backend</div>
+            <h2>MongoDB + Mongoose</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/mongodb/47A248"
+            alt="MongoDB"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const MONGO = [
+              "Todo Database",
+              "Notes Database",
+              "User Database",
+              "Blog Database",
+              "Product Database",
+              "Inventory System",
+              "Expense Tracker",
+              "Habit Tracker",
+              "Recipe Database",
+              "Movie Database",
+              "Book Library",
+              "Student Management System",
+              "Employee Management System",
+              "Course Management System",
+              "Ticket Management System",
+              "Comment System",
+              "Review System",
+              "Notification Database",
+              "Analytics Database",
+              "Full CRUD Application",
+            ];
+            document.write(renderProjects(MONGO, 346));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">CRUD</span><span class="skill">Queries</span
+          ><span class="skill">Indexes</span
+          ><span class="skill">Aggregation</span
+          ><span class="skill">References</span
+          ><span class="skill">Schema Design</span
+          ><span class="skill">Mongoose</span
+          ><span class="skill">MongoDB Atlas</span>
+        </div>
+      </section>
+
+      <section class="section" id="auth">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">24 · Backend</div>
+            <h2>Authentication & Authorization</h2>
+          </div>
+          <span>Security becomes architecture</span>
+        </div>
+        <div class="grid">
+          <script>
+            const AUTH = [
+              "Register / Login API",
+              "JWT Authentication",
+              "Password Hashing System",
+              "Email Verification",
+              "Password Reset",
+              "Refresh Token System",
+              "Session Authentication",
+              "Role-Based Authentication",
+              "Permission System",
+              "Admin Authentication",
+              "User Profile API",
+              "OAuth Login",
+              "Google Authentication",
+              "Multi-role Dashboard API",
+              "Account Lockout System",
+              "Login Attempt Tracker",
+              "Device Session Manager",
+              "API Key Authentication",
+              "Two-Factor Authentication",
+              "Complete Authentication Service",
+            ];
+            document.write(renderProjects(AUTH, 366));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">JWT</span><span class="skill">Refresh Tokens</span
+          ><span class="skill">Cookies</span><span class="skill">Sessions</span
+          ><span class="skill">bcrypt / Argon2</span
+          ><span class="skill">OAuth</span><span class="skill">RBAC</span
+          ><span class="skill">Permissions</span>
+        </div>
+      </section>
+
+      <section class="section" id="security">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">25 · Backend</div>
+            <h2>Backend Security</h2>
+          </div>
+          <span>Learn to attack your own API</span>
+        </div>
+        <div class="grid">
+          <script>
+            const SEC = [
+              "Rate Limiting Middleware",
+              "API Key System",
+              "Request Validation System",
+              "Input Sanitization",
+              "Security Headers",
+              "CORS Configuration",
+              "File Upload Security",
+              "Brute Force Protection",
+              "Login Rate Limiter",
+              "Audit Log System",
+              "IP Blocking System",
+              "Permission Middleware",
+              "Secure Password Service",
+              "Security Monitoring API",
+              "Secure REST API",
+            ];
+            document.write(renderProjects(SEC, 386));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">OWASP Top 10</span
+          ><span class="skill">Injection</span><span class="skill">XSS</span
+          ><span class="skill">CSRF</span><span class="skill">CORS</span
+          ><span class="skill">Rate Limiting</span
+          ><span class="skill">Secrets Management</span>
+        </div>
+      </section>
+
+      <section class="section" id="rest">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">26 · Backend</div>
+            <h2>Professional REST APIs</h2>
+          </div>
+          <span>From CRUD to business systems</span>
+        </div>
+        <div class="grid">
+          <script>
+            const REST = [
+              "E-commerce API",
+              "Blog API",
+              "Social Media API",
+              "Food Delivery API",
+              "Hotel Booking API",
+              "Flight Search API",
+              "Car Marketplace API",
+              "Real Estate API",
+              "Job Board API",
+              "Course Platform API",
+              "Hospital Management API",
+              "Banking API",
+              "CRM API",
+              "Project Management API",
+              "Ticket Management API",
+              "Logistics API",
+              "Subscription API",
+              "Notification API",
+              "Analytics API",
+              "Full Business REST API",
+            ];
+            document.write(renderProjects(REST, 401));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Versioning</span
+          ><span class="skill">Pagination</span
+          ><span class="skill">Filtering</span><span class="skill">Sorting</span
+          ><span class="skill">Search</span><span class="skill">OpenAPI</span
+          ><span class="skill">Swagger</span
+          ><span class="skill">Consistent Errors</span>
+        </div>
+      </section>
+
+      <section class="section" id="db">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">27 · Backend</div>
+            <h2>Advanced Database Engineering</h2>
+          </div>
+          <span>Performance · Modeling · Transactions</span>
+        </div>
+        <div class="grid">
+          <script>
+            const DB = [
+              "Advanced E-commerce Database",
+              "Inventory Management",
+              "Order Management",
+              "Warehouse Management",
+              "Shipment Tracking",
+              "Financial Transaction System",
+              "Booking System",
+              "Recommendation Database",
+              "Analytics Database",
+              "Audit Log Database",
+              "Multi-tenant Database",
+              "Permission Database",
+              "Notification Database",
+              "Search-optimized Database",
+              "High-volume Data API",
+            ];
+            document.write(renderProjects(DB, 421));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Compound Indexes</span
+          ><span class="skill">Aggregation</span
+          ><span class="skill">Transactions</span
+          ><span class="skill">Atomic Operations</span
+          ><span class="skill">Data Modeling</span
+          ><span class="skill">Denormalization</span
+          ><span class="skill">Cursor Pagination</span>
+        </div>
+      </section>
+
+      <section class="section" id="redis">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">28 · Backend</div>
+            <h2>Redis & Caching</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/redis/DC382D"
+            alt="Redis"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const REDIS = [
+              "Redis Cache API",
+              "Cached Product API",
+              "Cached Weather API",
+              "Session Store",
+              "Rate Limiter",
+              "OTP Service",
+              "Temporary Data Store",
+              "Leaderboard",
+              "View Counter",
+              "Trending System",
+              "Notification Cache",
+              "Search Cache",
+              "API Response Cache",
+              "Distributed Lock",
+              "High-performance API",
+            ];
+            document.write(renderProjects(REDIS, 436));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Caching</span><span class="skill">TTL</span
+          ><span class="skill">Sessions</span><span class="skill">Pub/Sub</span
+          ><span class="skill">Distributed Locks</span
+          ><span class="skill">Cache Invalidation</span>
+        </div>
+      </section>
+
+      <section class="section" id="queues">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">29 · Backend</div>
+            <h2>Background Jobs & Queues</h2>
+          </div>
+          <span>Workers · Retries · Idempotency</span>
+        </div>
+        <div class="grid">
+          <script>
+            const QUEUES = [
+              "Email Queue",
+              "Image Processing Queue",
+              "Notification Queue",
+              "Video Processing Queue",
+              "Report Generation Queue",
+              "PDF Generation Service",
+              "Scheduled Email System",
+              "Background Analytics Processor",
+              "Order Processing Queue",
+              "Payment Processing Queue",
+              "Retry Queue",
+              "Dead Letter Queue",
+              "Job Dashboard",
+              "Distributed Worker System",
+              "Complete Job Processing System",
+            ];
+            document.write(renderProjects(QUEUES, 451));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">BullMQ</span><span class="skill">Workers</span
+          ><span class="skill">Producers</span
+          ><span class="skill">Consumers</span><span class="skill">Retries</span
+          ><span class="skill">Delayed Jobs</span><span class="skill">Cron</span
+          ><span class="skill">Idempotency</span>
+        </div>
+      </section>
+
+      <section class="section" id="ws">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">30 · Backend</div>
+            <h2>WebSockets & Real-Time Systems</h2>
+          </div>
+          <span>State in motion</span>
+        </div>
+        <div class="grid">
+          <script>
+            const WS = [
+              "WebSocket Chat",
+              "Real-Time Notifications",
+              "Live Comments",
+              "Live Dashboard",
+              "Online User Tracker",
+              "Real-Time Collaboration",
+              "Multiplayer Lobby",
+              "Live Auction",
+              "Real-Time Stock Dashboard",
+              "Delivery Tracking",
+              "Live Location System",
+              "Collaborative Notes",
+              "Collaborative Whiteboard Backend",
+              "Real-Time Game Server",
+              "Complete Real-Time Platform",
+            ];
+            document.write(renderProjects(WS, 466));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">WebSockets</span
+          ><span class="skill">Socket.IO</span><span class="skill">Rooms</span
+          ><span class="skill">Presence</span
+          ><span class="skill">Broadcasting</span
+          ><span class="skill">Reconnection</span>
+        </div>
+      </section>
+
+      <section class="section" id="graphql">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">31 · Backend</div>
+            <h2>GraphQL</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/graphql/E10098"
+            alt="GraphQL"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const GQL = [
+              "GraphQL Todo API",
+              "GraphQL Blog",
+              "GraphQL User System",
+              "GraphQL Product API",
+              "GraphQL E-commerce",
+              "GraphQL Social Network",
+              "GraphQL Course Platform",
+              "GraphQL Analytics API",
+              "GraphQL Admin API",
+              "GraphQL Search API",
+              "GraphQL Subscription System",
+              "GraphQL Real-Time Chat",
+              "GraphQL Federation Demo",
+              "GraphQL Gateway",
+              "Production GraphQL API",
+            ];
+            document.write(renderProjects(GQL, 481));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Queries</span><span class="skill">Mutations</span
+          ><span class="skill">Schemas</span><span class="skill">Resolvers</span
+          ><span class="skill">Subscriptions</span
+          ><span class="skill">DataLoader</span><span class="skill">N+1</span
+          ><span class="skill">Federation</span>
+        </div>
+      </section>
+
+      <section class="section" id="postgres">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">32 · Backend</div>
+            <h2>PostgreSQL & SQL</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/postgresql/4169E1"
+            alt="PostgreSQL"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const PG = [
+              "Student Management System",
+              "Employee Management System",
+              "Banking Database",
+              "Library Management System",
+              "E-commerce Database",
+              "Hotel Booking Database",
+              "Airline Booking Database",
+              "University Database",
+              "Hospital Database",
+              "CRM Database",
+              "Accounting System",
+              "Inventory Database",
+              "Warehouse Database",
+              "Logistics Database",
+              "Multi-tenant SaaS Database",
+            ];
+            document.write(renderProjects(PG, 496));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">SQL</span><span class="skill">JOIN</span
+          ><span class="skill">GROUP BY</span
+          ><span class="skill">Subqueries</span
+          ><span class="skill">Indexes</span
+          ><span class="skill">Transactions</span
+          ><span class="skill">Constraints</span
+          ><span class="skill">Normalization</span
+          ><span class="skill">Prisma</span><span class="skill">Drizzle</span>
+        </div>
+      </section>
+
+      <section class="section" id="architecture">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">33 · Backend</div>
+            <h2>Architecture</h2>
+          </div>
+          <span>Build systems teams can maintain</span>
+        </div>
+        <div class="grid">
+          <script>
+            const ARCH = [
+              "Layered Architecture API",
+              "MVC API",
+              "Service-Repository Architecture",
+              "Modular Monolith",
+              "Clean Architecture API",
+              "Domain-Driven API",
+              "Event-Driven Backend",
+              "Multi-Tenant SaaS Backend",
+              "Plugin-Based Backend",
+              "Configurable Backend",
+              "API Gateway",
+              "Backend-for-Frontend",
+              "Microservice Demo",
+              "Distributed Backend",
+              "Production Backend Architecture",
+            ];
+            document.write(renderProjects(ARCH, 511));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">SOLID</span
+          ><span class="skill">Separation of Concerns</span
+          ><span class="skill">Services</span
+          ><span class="skill">Repositories</span><span class="skill">DTOs</span
+          ><span class="skill">Dependency Injection</span
+          ><span class="skill">Clean Architecture</span
+          ><span class="skill">DDD</span><span class="skill">Event-driven</span>
+        </div>
+      </section>
+
+      <section class="section" id="testing">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">34 · Backend</div>
+            <h2>Testing</h2>
+          </div>
+          <span>Confidence before deployment</span>
+        </div>
+        <div class="grid">
+          <script>
+            const TEST = [
+              "Unit-Tested API",
+              "Integration-Tested API",
+              "Authentication Test Suite",
+              "Database Test Suite",
+              "API Contract Tests",
+              "E-commerce Test Suite",
+              "Payment Test Suite",
+              "WebSocket Test Suite",
+              "Full Backend Test Suite",
+              "CI Automated Test Pipeline",
+            ];
+            document.write(renderProjects(TEST, 526));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Unit Tests</span
+          ><span class="skill">Integration Tests</span
+          ><span class="skill">E2E</span><span class="skill">Mocking</span
+          ><span class="skill">Fixtures</span><span class="skill">Coverage</span
+          ><span class="skill">Regression</span>
+        </div>
+      </section>
+
+      <section class="section" id="observability">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">35 · Backend</div>
+            <h2>Logging & Observability</h2>
+          </div>
+          <span>Know what your system is doing</span>
+        </div>
+        <div class="grid">
+          <script>
+            const OBS = [
+              "Structured Logger",
+              "Request Logger",
+              "Error Tracking System",
+              "Audit Log System",
+              "API Metrics",
+              "Performance Monitoring",
+              "Health Check API",
+              "Service Monitoring Dashboard",
+              "Distributed Tracing Demo",
+              "Full Observability System",
+            ];
+            document.write(renderProjects(OBS, 536));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Pino / Winston</span
+          ><span class="skill">Metrics</span
+          ><span class="skill">Health Checks</span
+          ><span class="skill">Tracing</span
+          ><span class="skill">OpenTelemetry</span
+          ><span class="skill">Prometheus</span
+          ><span class="skill">Grafana</span>
+        </div>
+      </section>
+
+      <section class="section" id="docker">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">36 · Backend / DevOps</div>
+            <h2>Docker & DevOps</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/docker/2496ED"
+            alt="Docker"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const DOCKER = [
+              "Dockerized Node API",
+              "Dockerized Express API",
+              "Node + MongoDB Docker",
+              "Node + PostgreSQL Docker",
+              "Node + Redis Docker",
+              "Multi-container Application",
+              "Docker Compose Backend",
+              "CI Pipeline",
+              "Automated Deployment",
+              "Staging Environment",
+              "Production Environment",
+              "Reverse Proxy Setup",
+              "Backend Monitoring Stack",
+              "Containerized Microservices",
+              "Production Docker Infrastructure",
+            ];
+            document.write(renderProjects(DOCKER, 546));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Dockerfile</span><span class="skill">Compose</span
+          ><span class="skill">Containers</span
+          ><span class="skill">Volumes</span><span class="skill">Networks</span
+          ><span class="skill">Nginx</span><span class="skill">CI/CD</span>
+        </div>
+      </section>
+
+      <section class="section" id="cloud">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">37 · Backend / DevOps</div>
+            <h2>Cloud & Deployment</h2>
+          </div>
+          <span>AWS · Azure · Google Cloud</span>
+        </div>
+        <div class="grid">
+          <script>
+            const CLOUD = [
+              "Deploy Express API",
+              "Deploy MongoDB Backend",
+              "Deploy PostgreSQL Backend",
+              "Deploy Redis Service",
+              "Deploy WebSocket Server",
+              "Deploy Worker System",
+              "Deploy Docker Application",
+              "Cloud File Storage",
+              "Cloud Image Processing",
+              "Production Cloud Backend",
+            ];
+            document.write(renderProjects(CLOUD, 561));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Compute</span><span class="skill">Storage</span
+          ><span class="skill">Databases</span
+          ><span class="skill">Networking</span><span class="skill">DNS</span
+          ><span class="skill">CDN</span><span class="skill">IAM</span
+          ><span class="skill">Secrets</span>
+        </div>
+      </section>
+
+      <section class="section" id="micro">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">38 · Backend</div>
+            <h2>Microservices</h2>
+          </div>
+          <span>Distributed systems</span>
+        </div>
+        <div class="grid">
+          <script>
+            const MICRO = [
+              "User Service",
+              "Authentication Service",
+              "Product Service",
+              "Order Service",
+              "Payment Service",
+              "Notification Service",
+              "Email Service",
+              "Search Service",
+              "Analytics Service",
+              "File Service",
+              "API Gateway",
+              "Service Discovery",
+              "Event Bus",
+              "Distributed E-commerce",
+              "Full Microservice Platform",
+            ];
+            document.write(renderProjects(MICRO, 571));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Services</span
+          ><span class="skill">API Gateway</span
+          ><span class="skill">Service Discovery</span
+          ><span class="skill">Event Bus</span
+          ><span class="skill">Distributed Data</span
+          ><span class="skill">Fault Tolerance</span>
+        </div>
+      </section>
+
+      <section class="section" id="ai-be">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">39 · Backend</div>
+            <h2>AI Backend</h2>
+          </div>
+          <span>AI as infrastructure</span>
+        </div>
+        <div class="grid">
+          <script>
+            const AIBE = [
+              "AI Chat API",
+              "AI Streaming API",
+              "AI Document Processing API",
+              "AI Image Generation Backend",
+              "AI Recommendation API",
+              "AI Search System",
+              "RAG Backend",
+              "AI Agent Backend",
+              "AI SaaS Backend",
+              "AI Platform Infrastructure",
+            ];
+            document.write(renderProjects(AIBE, 586));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">AI APIs</span><span class="skill">Streaming</span
+          ><span class="skill">Embeddings</span
+          ><span class="skill">Vector Databases</span
+          ><span class="skill">RAG</span><span class="skill">Agents</span
+          ><span class="skill">Usage Tracking</span
+          ><span class="skill">AI Queues</span>
+        </div>
+      </section>
+
+      <section class="section" id="python">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">40 · Backend</div>
+            <h2>Python</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/python/3776AB"
+            alt="Python"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const PY = [
+              ["CLI Calculator", "argparse · functions · packaging"],
+              ["File Organizer Script", "pathlib · shutil · logging"],
+              ["CSV / JSON Processor", "pandas basics · transform pipelines"],
+              ["Web Scraper", "requests · BeautifulSoup · rate limits"],
+              ["API Client Library", "httpx · retries · typed models"],
+              ["Password Manager CLI", "cryptography · key derivation"],
+              ["Task Scheduler", "APScheduler · cron-like jobs"],
+              ["Log Analyzer", "regex · aggregations · reports"],
+              ["Pytest Test Suite", "fixtures · parametrize · coverage"],
+              ["Async Downloader", "asyncio · aiohttp · concurrency"],
+              ["Pydantic Data Models", "validation · settings · serializers"],
+              ["SQLAlchemy CRUD", "ORM · sessions · migrations"],
+              ["Celery Worker Demo", "background tasks · Redis broker"],
+              ["Typed Python Package", "type hints · mypy · pyproject"],
+              [
+                "Python Microservice Skeleton",
+                "structure · config · health checks",
+              ],
+            ];
+            document.write(renderProjects(PY, 666));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Syntax & OOP</span
+          ><span class="skill">Virtualenvs</span
+          ><span class="skill">pytest</span><span class="skill">asyncio</span
+          ><span class="skill">typing</span
+          ><span class="skill">requests / httpx</span
+          ><span class="skill">SQLAlchemy</span
+          ><span class="skill">Pydantic</span>
+        </div>
+      </section>
+
+      <section class="section" id="django">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">41 · Backend</div>
+            <h2>Django</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/django/092E20"
+            alt="Django"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const DJ = [
+              ["Django Blog", "Models · views · templates · admin"],
+              ["Django Todo API", "DRF · serializers · viewsets"],
+              ["Django Auth System", "Users · login · permissions"],
+              ["Django E-commerce", "Products · cart · orders"],
+              ["Django CMS", "Pages · media · staff workflows"],
+              ["Django REST Social API", "Posts · likes · nested serializers"],
+              [
+                "Django Multi-tenant SaaS",
+                "Organizations · roles · billing hooks",
+              ],
+              ["Django File Upload Service", "Storage · validation · serving"],
+              ["Django Search App", "Filters · annotations · pagination"],
+              ["Django Notifications", "Signals · email · in-app"],
+              ["Django Admin Customization", "Inlines · actions · dashboards"],
+              ["Django Caching Layer", "Redis · per-view · low-level cache"],
+              ["Django Test Suite", "TestCase · factories · coverage"],
+              ["Django + Celery Pipeline", "Async emails · reports"],
+              ["Production Django API", "Gunicorn · env · migrations · deploy"],
+            ];
+            document.write(renderProjects(DJ, 681));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">ORM</span><span class="skill">MTV</span
+          ><span class="skill">DRF</span><span class="skill">Auth</span
+          ><span class="skill">Admin</span><span class="skill">Migrations</span
+          ><span class="skill">Signals</span><span class="skill">Celery</span>
+        </div>
+      </section>
+
+      <section class="section" id="flask">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">42 · Backend</div>
+            <h2>Flask</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/flask/FFFFFF"
+            alt="Flask"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const FL = [
+              ["Flask Hello API", "Routes · JSON · app factory"],
+              ["Flask Todo API", "Blueprints · SQLAlchemy · CRUD"],
+              ["Flask Blog", "Jinja2 · forms · sessions"],
+              ["Flask Auth API", "Login · JWT · password hashing"],
+              ["Flask File Service", "Uploads · validation · storage"],
+              ["Flask REST Blueprint App", "Versioned APIs · error handlers"],
+              ["Flask + Redis Cache", "Cache-aside · rate limits"],
+              ["Flask WebSocket Chat", "flask-socketio · rooms"],
+              ["Flask Admin Lite", "CRUD UI · role checks"],
+              ["Flask Microservice", "Health · metrics · config"],
+              ["Flask Testing Suite", "pytest · test client · fixtures"],
+              ["Flask Production Skeleton", "Gunicorn · Docker · env"],
+              ["Flask GraphQL Demo", "Graphene · resolvers"],
+              ["Flask Background Jobs", "RQ / Celery · workers"],
+              ["Full Flask SaaS API", "Auth · billing hooks · docs"],
+            ];
+            document.write(renderProjects(FL, 696));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Blueprints</span><span class="skill">Jinja2</span
+          ><span class="skill">SQLAlchemy</span
+          ><span class="skill">Flask-Login</span
+          ><span class="skill">Extensions</span
+          ><span class="skill">Application Factory</span>
+        </div>
+      </section>
+
+      <section class="section" id="fastapi">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">43 · Backend</div>
+            <h2>FastAPI</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/fastapi/009688"
+            alt="FastAPI"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const FA = [
+              ["FastAPI Hello", "Path ops · Pydantic · OpenAPI"],
+              ["FastAPI Todo", "CRUD · Depends · status codes"],
+              ["FastAPI Auth JWT", "OAuth2 password flow · scopes"],
+              ["FastAPI SQLAlchemy App", "Async sessions · repositories"],
+              ["FastAPI File Uploads", "Multipart · streaming responses"],
+              ["FastAPI Background Tasks", "On-request jobs · queues"],
+              ["FastAPI WebSocket Chat", "Realtime · connection manager"],
+              ["FastAPI Pagination API", "Filters · sorting · cursor"],
+              ["FastAPI Microservice", "Settings · health · metrics"],
+              ["FastAPI + Redis", "Cache · rate limit middleware"],
+              ["FastAPI Testing", "TestClient · pytest · overrides"],
+              ["FastAPI Full CRUD SaaS", "Users · orgs · roles · docs"],
+            ];
+            document.write(renderProjects(FA, 711));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Pydantic</span><span class="skill">Depends</span
+          ><span class="skill">OpenAPI</span><span class="skill">Async</span
+          ><span class="skill">OAuth2</span><span class="skill">SQLAlchemy</span
+          ><span class="skill">WebSockets</span>
+        </div>
+      </section>
+
+      <section class="section" id="golang">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">44 · Backend</div>
+            <h2>Go (Golang)</h2>
+          </div>
+          <img
+            class="logo"
+            src="https://cdn.simpleicons.org/go/00ADD8"
+            alt="Go"
+          />
+        </div>
+        <div class="grid">
+          <script>
+            const GO = [
+              ["Go CLI Tool", "flags · cobra · modules"],
+              ["Go HTTP Server", "net/http · handlers · middleware"],
+              ["Go REST API", "chi/gin · JSON · routing"],
+              ["Go Todo Service", "CRUD · structs · validation"],
+              ["Go Auth Service", "JWT · middleware · password hash"],
+              ["Go SQL API", "database/sql · sqlc · migrations"],
+              ["Go Concurrent Crawler", "goroutines · channels · worker pool"],
+              ["Go gRPC Service", "protobuf · server · client"],
+              ["Go WebSocket Hub", "Realtime fan-out · rooms"],
+              ["Go File Upload API", "multipart · streaming · storage"],
+              ["Go Rate Limiter", "token bucket · middleware"],
+              ["Go Microservice Kit", "config · health · graceful shutdown"],
+              ["Go Testing Suite", "table-driven · httptest · mocks"],
+              ["Go Docker Service", "multi-stage build · scratch/distroless"],
+              ["Production Go API", "observability · deploy · hardening"],
+            ];
+            document.write(renderProjects(GO, 723));
+          </script>
+        </div>
+        <div class="skills">
+          <span class="skill">Goroutines</span
+          ><span class="skill">Channels</span><span class="skill">net/http</span
+          ><span class="skill">chi / gin</span
+          ><span class="skill">sqlc / GORM</span
+          ><span class="skill">Interfaces</span
+          ><span class="skill">Modules</span><span class="skill">Testing</span>
+        </div>
+      </section>
+
+      <section class="section" id="god">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">45 · Full Stack</div>
+            <h2>God Mode Capstones</h2>
+          </div>
+          <span>Frontend + Backend + Infrastructure</span>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>Full E-commerce Ecosystem</h3>
+            <p>
+              Storefront · Auth · Products · Inventory · Orders · Payments ·
+              Shipping · Coupons · Reviews · Notifications · Admin · Analytics
+            </p>
+          </article>
+          <article class="card">
+            <h3>Social Media Platform</h3>
+            <p>
+              Users · Posts · Comments · Likes · Followers · Stories · Media ·
+              Chat · Notifications · Search · Recommendations
+            </p>
+          </article>
+          <article class="card">
+            <h3>SaaS Platform</h3>
+            <p>
+              Organizations · Teams · Roles · Permissions · Subscriptions ·
+              Payments · Usage limits · API keys · Webhooks · Analytics
+            </p>
+          </article>
+          <article class="card">
+            <h3>Logistics Platform</h3>
+            <p>
+              Drivers · Warehouses · Agencies · Shipments · Tracking · Orders ·
+              Pricing · Payments · Notifications · Documents · Analytics ·
+              Real-time tracking · External APIs
+            </p>
+          </article>
+          <article class="card">
+            <h3>Streaming Platform</h3>
+            <p>
+              Profiles · Video upload · Processing · Transcoding · Storage ·
+              Search · Recommendations · History · Subscriptions · Payments ·
+              Analytics
+            </p>
+          </article>
+          <article class="card">
+            <h3>Collaborative Workspace</h3>
+            <p>
+              Organizations · Teams · Projects · Documents · Comments ·
+              Real-time collaboration · Presence · Permissions · Version history
+            </p>
+          </article>
+          <article class="card">
+            <h3>AI SaaS Backend</h3>
+            <p>
+              Users · Auth · Subscriptions · Payments · AI requests · Token
+              tracking · Usage limits · Queues · Caching · Analytics · Admin ·
+              API keys
+            </p>
+          </article>
+          <article class="card">
+            <h3>Full Startup Platform</h3>
+            <p>
+              Authentication · Dashboards · Payments · Email · Notifications ·
+              Analytics · API · Database · Docker · Cloud · Monitoring · SEO ·
+              i18n · Roles · AI · Advanced UX
+            </p>
+          </article>
+        </div>
+
+        <div style="margin-top: 25px">
+          <h3>Reference Architecture</h3>
+          <div class="arch">
+            ┌─────────────────────┐ │ FRONTEND │ │ React / Next.js │
+            └──────────┬──────────┘ │ API Gateway │
+            ┌──────────┼──────────────────────────┐ │ │ │ Authentication
+            Application WebSocket │ │ │ │ ┌──────┼──────┐ │ │ │ │ │ │ Users
+            Orders Products Payments Realtime │ │ │
+            └──────────┴──────────────────────────┘ │ Event System │
+            ┌──────────┼──────────┐ │ │ │ Redis Database Queue │ Background
+            Workers │ ┌──────────┼──────────┐ │ │ │ Email Storage AI │ Docker /
+            Cloud │ Monitoring / Observability
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="workflow">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">46 · Method</div>
+            <h2>How to Actually Master It</h2>
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <h3>01 · Build</h3>
+            <p>
+              Build the smallest working version. Prioritize understanding over
+              visual polish.
+            </p>
+          </article>
+          <article class="card">
+            <h3>02 · Rebuild</h3>
+            <p>
+              Rebuild important projects later with React, Next.js, better APIs,
+              stronger database design or better architecture.
+            </p>
+          </article>
+          <article class="card">
+            <h3>03 · Improve</h3>
+            <p>
+              Add validation, authentication, caching, tests, accessibility,
+              performance, error handling and observability.
+            </p>
+          </article>
+          <article class="card">
+            <h3>04 · Combine</h3>
+            <p>
+              Turn isolated projects into systems: Todo → Kanban → Project
+              Manager → SaaS.
+            </p>
+          </article>
+          <article class="card">
+            <h3>05 · Ship</h3>
+            <p>
+              Deploy projects. Use Git, CI/CD, Docker, cloud services,
+              monitoring and production practices.
+            </p>
+          </article>
+          <article class="card">
+            <h3>06 · Document</h3>
+            <p>
+              Write README files, architecture notes, API docs, decisions and
+              lessons learned.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="master">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">47 · Master Checklist</div>
+            <h2>Technology Stack</h2>
+          </div>
+        </div>
+        <div class="checklist grid">
+          <div class="card">
+            <h3>Frontend</h3>
+            <label><input type="checkbox" /> HTML</label
+            ><label><input type="checkbox" /> CSS</label
+            ><label><input type="checkbox" /> JavaScript</label
+            ><label><input type="checkbox" /> TypeScript</label
+            ><label><input type="checkbox" /> Bootstrap</label
+            ><label><input type="checkbox" /> Tailwind CSS</label
+            ><label><input type="checkbox" /> React</label
+            ><label><input type="checkbox" /> React Router</label
+            ><label><input type="checkbox" /> Redux Toolkit</label
+            ><label><input type="checkbox" /> Zustand</label
+            ><label><input type="checkbox" /> Next.js</label
+            ><label><input type="checkbox" /> Vue.js</label
+            ><label><input type="checkbox" /> Pinia</label
+            ><label><input type="checkbox" /> Nuxt</label
+            ><label><input type="checkbox" /> Angular</label
+            ><label><input type="checkbox" /> Electron</label
+            ><label><input type="checkbox" /> Three.js</label>
+          </div>
+          <div class="card">
+            <h3>Backend</h3>
+            <label><input type="checkbox" /> Node.js</label
+            ><label><input type="checkbox" /> Express.js</label
+            ><label><input type="checkbox" /> REST APIs</label
+            ><label><input type="checkbox" /> GraphQL</label
+            ><label><input type="checkbox" /> WebSockets</label
+            ><label><input type="checkbox" /> Authentication</label
+            ><label><input type="checkbox" /> Authorization</label
+            ><label><input type="checkbox" /> MongoDB</label
+            ><label><input type="checkbox" /> PostgreSQL</label
+            ><label><input type="checkbox" /> Redis</label
+            ><label><input type="checkbox" /> Python</label
+            ><label><input type="checkbox" /> Django</label
+            ><label><input type="checkbox" /> Flask</label
+            ><label><input type="checkbox" /> FastAPI</label
+            ><label><input type="checkbox" /> Go</label>
+          </div>
+          <div class="card">
+            <h3>Engineering</h3>
+            <label><input type="checkbox" /> Testing</label
+            ><label><input type="checkbox" /> Security</label
+            ><label><input type="checkbox" /> Architecture</label
+            ><label><input type="checkbox" /> Queues</label
+            ><label><input type="checkbox" /> Logging</label
+            ><label><input type="checkbox" /> Observability</label
+            ><label><input type="checkbox" /> Docker</label
+            ><label><input type="checkbox" /> CI/CD</label
+            ><label><input type="checkbox" /> Cloud</label
+            ><label><input type="checkbox" /> Microservices</label>
+          </div>
+          <div class="card">
+            <h3>Modern</h3>
+            <label><input type="checkbox" /> AI APIs</label
+            ><label><input type="checkbox" /> Embeddings</label
+            ><label><input type="checkbox" /> Vector Databases</label
+            ><label><input type="checkbox" /> RAG</label
+            ><label><input type="checkbox" /> AI Agents</label
+            ><label><input type="checkbox" /> Real-time Systems</label
+            ><label><input type="checkbox" /> Distributed Systems</label
+            ><label><input type="checkbox" /> SaaS Architecture</label>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        Frontend → Backend Mastery Roadmap · Designed as a long-term personal
+        curriculum. Logos are loaded from Simple Icons CDN when online; the
+        roadmap itself remains fully contained in this HTML document.
+      </footer>
+    </main>
+
+    <script>
+      const search = document.getElementById("search");
+      const aside = document.querySelector("aside");
+
+      function filterSidebar() {
+        const q = search.value.trim().toLowerCase();
+        const links = aside.querySelectorAll("nav a");
+        const titles = aside.querySelectorAll(".nav-title");
+        const groups = aside.querySelectorAll(".nav-group");
+
+        links.forEach((a) => {
+          const match = !q || a.textContent.toLowerCase().includes(q);
+          a.style.display = match ? "" : "none";
+        });
+
+        // Hide curriculum groups with no matching links
+        groups.forEach((group) => {
+          const visible = [...group.querySelectorAll("a")].some(
+            (a) => a.style.display !== "none",
+          );
+          group.style.display = !q || visible ? "" : "none";
+        });
+
+        // Hide Frontend / Backend titles when nothing under them matches
+        titles.forEach((title) => {
+          let el = title.nextElementSibling;
+          let anyVisible = false;
+          while (el && !el.classList.contains("nav-title")) {
+            if (el.tagName === "NAV") {
+              const shown = [...el.querySelectorAll("a")].some(
+                (a) => a.style.display !== "none",
+              );
+              if (shown) anyVisible = true;
+            }
+            el = el.nextElementSibling;
+          }
+          title.style.display = !q || anyVisible ? "" : "none";
+        });
+      }
+
+      search.addEventListener("input", filterSidebar);
+
+      // Clear filter after jumping to a section
+      aside.querySelectorAll("nav a").forEach((a) => {
+        a.addEventListener("click", () => {
+          search.value = "";
+          filterSidebar();
+        });
+      });
+    </script>
+  </body>
+</html>
