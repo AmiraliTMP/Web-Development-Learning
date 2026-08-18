@@ -1,0 +1,25 @@
+{
+  "name": "elecron-task-manager",
+  "version": "1.0.0",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "com.amirali.electrontaskmanager",
+    "productName": "Electron Task Manager",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    }
+  },
+  "keywords": [],
+  "author": "AmiraliTMP",
+  "license": "ISC",
+  "description": "A desktop task manager built with Electron",
+  "devDependencies": {
+    "electron": "^43.4.0",
+    "electron-builder": "^26.15.3"
+  }
+}
